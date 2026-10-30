@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const { plate } = require('../../tools/lib/storybook');
-const { layOut, mapper, contentBox } = require('../../tools/lib/layout');
+const { layOut, mapper, contentBox, saveShapes } = require('../../tools/lib/layout');
 const TC = require('../../tools/lib/tagchart');
 const D = require('../../tools/lib/draw');
 const { person } = require('../../tools/lib/people');
@@ -15,6 +15,7 @@ async function main() {
   const L = await layOut(path.join(HERE, 'order/layout.mmd'), { face: 'Kevin Serif Bold', svgOut: path.join(HERE, 'out/order-layout.svg') });
   const P = plate({ id: 'order', w: 216, h: 216, ppm: FAST ? 5 : 10, seed: 'boba-order-1', paper: 'hotpress' });
   const m = mapper(contentBox(L), { x: 8, y: 16, w: 200, h: 194 });
+  saveShapes(path.join(HERE, 'out/order-pele.json'), L, m);
 
   P.text('the business of boba  ·  I', 12.5, 13.6, { face: 'serif-bold', size: 3.8 });
   P.text('An order', 11, 30, { size: 15 });

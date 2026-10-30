@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const { plate } = require('../../tools/lib/storybook');
-const { layOut, mapper } = require('../../tools/lib/layout');
+const { layOut, mapper, saveShapes } = require('../../tools/lib/layout');
 const TC = require('../../tools/lib/tagchart');
 const D = require('../../tools/lib/draw');
 const Lt = require('../../tools/lib/letter');
@@ -17,6 +17,7 @@ async function main() {
   const P = plate({ id: 'counter', w: 216, h: 216, ppm: FAST ? 5 : 10, seed: 'boba-counter-1', paper: 'hotpress' });
   const all = L.clusters.find((c) => c.id === 'all');
   const m = mapper({ x: all.x, y: all.y, w: all.w, h: all.h }, { x: 6, y: 50, w: 204, h: 120 });
+  saveShapes(path.join(HERE, 'out/counter-pele.json'), L, m);
   const box = (c) => [m.X(c.x), m.Y(c.y), m.X(c.x + c.w), m.Y(c.y + c.h), m.Y(c.headY)];
 
   P.text('the business of boba  ·  III', 12.5, 13.6, { face: 'serif-bold', size: 3.8 });

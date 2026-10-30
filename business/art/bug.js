@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const { plate } = require('../../tools/lib/storybook');
-const { layOut, mapper, contentBox } = require('../../tools/lib/layout');
+const { layOut, mapper, contentBox, saveShapes } = require('../../tools/lib/layout');
 const TC = require('../../tools/lib/tagchart');
 const D = require('../../tools/lib/draw');
 const Lt = require('../../tools/lib/letter');
@@ -42,6 +42,7 @@ async function main() {
   });
   const P = plate({ id: 'bug', w: 216, h: 216, ppm: FAST ? 5 : 10, seed: 'boba-bug-1', paper: 'hotpress' });
   const m = mapper(contentBox(chart), { x: 10, y: 44, w: 196, h: 168 });
+  saveShapes(path.join(HERE, 'out/bug-pele.json'), chart, m);
 
   P.text('the business of boba  ·  IV', 12.5, 13.6, { face: 'serif-bold', size: 3.8 });
   P.text('The pearl bug', 11, 30, { size: 13.6 });

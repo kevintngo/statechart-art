@@ -22,6 +22,7 @@ const PLATES = [
     kind: 'A flat chart with a branch and a loop',
     note: 'Each state is an order ticket pinned up, and each step is a red thread between the pins. The words for each step sit beside its thread.',
     rules: [['PaidForEveryDrink', 'Every drink being made, ready or handed over has been paid for.'], ['RefundsGiveMoneyBack', 'A refunded order has its money back.']],
+    over: "The finished plate, faded, with pele's boxes and lines drawn over it in blue. Each order ticket sits on one of pele's boxes, and each red thread follows one of pele's lines.",
     alt: 'Pen and coloured pencil drawing titled An order, from the line to your hand. The statechart is drawn as paper order tickets pinned up with coloured pushpins and joined by red thread: in line; you order, to ordered; you pay, to paid. From paid, the barista starts if there are pearls, to being made, or money back if the pearls ran out, to refunded. From being made, your number is called, to ready. From ready, it is the wrong drink goes back to being made, and you pick it up leads to in your hand. Around the chart: three customers waiting in line, a cashier at a counter with a till showing 5.50 and coins, a barista shaking a drink beside a service bell and a finished cup, a jar of pearls labelled sold out with a coin on a shelf, and a person with short wavy black hair, a beige polo and an iced coffee on their head holding up a cup of boba milk tea.',
   },
   {
@@ -29,6 +30,7 @@ const PLATES = [
     kind: 'A chart with a parent state',
     note: 'Open is a parent state with three states inside, so it is drawn as the shop window: quiet, busy and a rush are notes taped to the glass, and the other states are wooden signs.',
     rules: [['OpenOnlyWhenReady', 'The shop is open only once the tea is brewed and the pearls are boiled.'], ['CloseOnlyWhenEmpty', 'The shop closes up only when no one is inside.'], ['CountAfterMopping', 'The till is counted only after the floor is mopped.']],
+    over: "The finished plate, faded, with pele's boxes and lines drawn over it in blue. The shop window sits on pele's box for open, and each sign and note sits on one of pele's boxes.",
     alt: 'Pen and coloured pencil drawing titled A day, at the shop, 7 am to 9 pm. The statechart is drawn as a shop front. Closed, getting ready and closing up are wooden signs. Open is the shop window under a striped awning, with quiet, busy and a rush as notes taped to the glass. At 7 am, closed goes to getting ready; tea and pearls ready leads into open, to quiet; people come in, to busy; school is out, to a rush; it calms down, back to quiet; at 9 pm, if quiet, to closing up; till counted, back to closed. Around the chart: a sunrise, a kettle and a pot of pearls on a stove on a shelf, a moon and stars, a mop in a bucket, a morning glory vine and a planter of flowers under the window.',
   },
   {
@@ -36,6 +38,7 @@ const PLATES = [
     kind: 'Two regions, at the same time',
     note: 'The barista and the pot each move on their own, side by side. A step that waits on the other region says so in brackets, coloured like the region it waits on.',
     rules: [['NoDrinkWhileCooking', 'The barista is never making a drink while a batch of pearls is cooking.']],
+    over: "The finished plate, faded, with pele's boxes and lines drawn over it in blue. The frame and the two cards sit on pele's boxes for the regions, and each state sits on one of pele's boxes.",
     alt: 'Pen and coloured pencil drawing titled Two at once, the barista and the pot. Under a menu board, the statechart shows two regions side by side inside a frame marked at the same time. The barista: barista free; an order comes in, unless cooking pearls, to making a drink; shaken and sealed, to calling a number; picked up, back to barista free. The pot: full of pearls; pearls run low, to running low; a new batch, when barista free, to cooking pearls; chewy again, back to full of pearls. Each condition is coloured like the region it names. Below, a barista shakes a drink behind the counter beside two finished cups and a pager, and a pot of pearls and a kettle sit on a stove.',
   },
   {
@@ -43,6 +46,7 @@ const PLATES = [
     kind: 'A rule that breaks, and the path to it',
     note: 'TLC finds a way to break the rule: in a rush, nobody checks how old the pearls are. The chart marks the state that breaks it, and the shortest path to it is traced in red.',
     rules: [['NeverServeOldPearls', 'Pearls are never served more than 4 hours after boiling. It breaks.']],
+    over: "The finished plate, faded, with pele's boxes and lines drawn over it in blue. Each card sits on one of pele's boxes, and the red path follows pele's lines.",
     alt: 'Pen and coloured pencil drawing titled The pearl bug, TLC finds how old pearls get served. A card states the rule: never serve pearls more than 4 hours old. The statechart: just boiled; an hour passes, to chewy, where more hours pass; an hour passes, to getting firm; an hour passes, to too old, where a rush starts. From too old, thrown out leads to thrown out, and a new batch is boiled leads back to just boiled; but a cup is served in a rush leads to an old cup is served, which is stamped rule broken. The path TLC found, from just boiled through too old to the old cup, is traced in red. Around the chart: a ladybug, an hourglass, a magnifying glass over a cup of old pearls, a pot of pearls on a stove and a jar of old pearls.',
   },
 ];
@@ -65,6 +69,17 @@ async function jpeg(from, to, px, q = 88) {
   fs.mkdirSync(path.dirname(path.join(DOCS, to)), { recursive: true });
   fs.writeFileSync(path.join(DOCS, to), await c.encode('jpeg', q));
 }
+
+const overlay = (p) => {
+  const sh = JSON.parse(fs.readFileSync(path.join(OUT, `${p.key}-pele.json`), 'utf8')), pts = (q) => q.map((v) => v.join(',')).join(' ');
+  return `<svg viewBox="0 0 216 216" role="img" aria-label="${esc(p.over)}"><rect width="216" height="216" fill="#fff" fill-opacity="0.62"/>`
+    + `<g fill="none" stroke="#1b4fd1" stroke-width="0.46" stroke-linejoin="round" stroke-linecap="round">`
+    + sh.boxes.map(([x, y, w, h, rx]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="#1b4fd1" fill-opacity="0.1"/>`).join('')
+    + sh.lines.map((q) => `<polyline points="${pts(q)}"/>`).join('')
+    + sh.heads.map((q) => `<polygon points="${pts(q)}" fill="#1b4fd1"/>`).join('')
+    + sh.dots.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#1b4fd1"/>`).join('')
+    + '</g></svg>';
+};
 
 const inlineSvg = (svg, label) => svg.replace('<svg ', `<svg aria-label="${esc(label)}" `).replace(/ role="graphics-document document"/, ' role="img"');
 
@@ -102,8 +117,11 @@ async function main() {
     <div class="row">
       <figure>${code(read(`${p.dir}/${p.model}`), `The model, ${p.model}`)}<figcaption>1. The model, in TLA+</figcaption></figure>
       <figure>${code(read(`${p.dir}/view.mjs`), `The view for ${p.title}`)}<figcaption>2. The view: the reader's words for each state and step</figcaption></figure>
+    </div>
+    <div class="row three">
       <figure>${code(read(`${p.dir}/layout.mmd`), `The Mermaid chart for ${p.title}`)}<figcaption>3. The chart /statechart wrote, with a line of layout for pele</figcaption></figure>
       <figure><div class="pele">${inlineSvg(L.svg, `pele's plain layout of ${p.title}`)}</div><figcaption>4. pele's plain layout, which the drawing follows</figcaption></figure>
+      <figure><div class="over"><img src="img/${p.key}-1080.jpg" alt="" width="1080" height="1080" loading="lazy" decoding="async">${overlay(p)}</div><figcaption>5. pele's boxes and lines, in blue, on the drawing</figcaption></figure>
     </div>
   </article>`);
   }
@@ -160,7 +178,7 @@ ${plates.join('\n')}
     <li><b>Check it.</b> <code>/statechart</code> runs TLC over every state the model can reach and checks each rule in each one. When a rule breaks, it finds the shortest path to the break.</li>
     <li><b>Choose the words.</b> A view says what the reader sees in each state and each step. It picks the kind of chart too: a word for a flat chart, a list for parent states, an object for regions.</li>
     <li><b>Lay it out.</b> pele lays out the Mermaid chart, measuring every word in the letters the drawing uses.</li>
-    <li><b>Draw it.</b> A program draws pele's boxes and lines as things from a boba shop, tickets, signs, notes and cards, in a simulated pen and coloured pencils, and fills the space around them with the shop. Words sit on clean paper, and arrows stop short of what they point at.</li>
+    <li><b>Draw it.</b> A program draws pele's boxes and lines as things from a boba shop, tickets, signs, notes and cards, in a simulated pen and coloured pencils, and fills the space around them with the shop. Words sit on clean paper, and arrows stop short of what they point at. The last picture for each plate below puts pele's boxes and lines, in blue, over the finished drawing.</li>
   </ol>
 ${made.join('\n')}
 </section>

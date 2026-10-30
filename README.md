@@ -39,7 +39,8 @@ node business/art/order.js
 ```
 
 The plate scripts are `order.js`, `day.js`, `counter.js` and `bug.js`. Each one writes `business/out/<plate>.png`
-(2160 px), `<plate>-x.jpg` (2048 px, for x.com) and `<plate>-preview.png` (1080 px). With `--fast`, it draws the same
+(2160 px), `<plate>-x.jpg` (2048 px, for x.com), `<plate>-preview.png` (1080 px), and `<plate>-pele.json`, pele's
+boxes and lines where the plate puts them, which the site draws in blue over the plate. With `--fast`, it draws the same
 files at half the size, for a quick look. The drawing is seeded, so the same code draws the same picture.
 
 After the four plates, draw the icons and the share card:

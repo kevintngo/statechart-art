@@ -98,4 +98,15 @@ function contentBox(L) {
   return { x, y, w: Math.max(...xs) - x, h: Math.max(...ys) - y };
 }
 
-module.exports = { layOut, readState, pathPoints, mapper, contentBox };
+function saveShapes(file, L, m) {
+  const r = (v) => Math.round(v * 100) / 100, pt = (p) => m.P(p).map(r), k = m.k;
+  const box = (x, y, w, h, rx) => [m.X(x), m.Y(y), w * k, h * k, (rx || 0) * k].map(r);
+  fs.writeFileSync(file, JSON.stringify({
+    boxes: L.clusters.map((c) => box(c.x, c.y, c.w, c.h, c.rx)).concat(L.nodes.map((n) => box(n.cx - n.w / 2, n.cy - n.h / 2, n.w, n.h, n.rx))),
+    lines: L.clusters.filter((c) => c.headY !== undefined).map((c) => [[c.x, c.headY], [c.x + c.w, c.headY]]).concat(L.dividers, L.edges.map((e) => e.pts)).map((q) => q.map(pt)),
+    heads: L.edges.filter((e) => e.marker).map((e) => e.marker.map(pt)),
+    dots: L.starts.map((s) => [...pt([s.cx, s.cy]), r(s.r * k)]),
+  }));
+}
+
+module.exports = { layOut, readState, pathPoints, mapper, contentBox, saveShapes };

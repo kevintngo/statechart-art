@@ -70,6 +70,13 @@ pre { margin: 0; padding: 14px 16px; max-height: 420px; overflow: auto; backgrou
 .pele { display: flex; align-items: center; justify-content: center; padding: 12px; background: #fff; box-shadow: 0 0 0 1px var(--rule); min-height: 220px;
   --pele-bg: #ffffff; --pele-fg: #21201f; --pele-muted: #57534f; --pele-line: #21201f; --pele-surface: #faf9f6; --pele-surface-alt: #f1eee7; --pele-border: #8f877d; --pele-font: "Kevin Sans"; }
 .pele svg { width: 100%; max-height: 520px; }
+.row.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+.three pre { aspect-ratio: 1; max-height: none; white-space: pre-wrap; overflow-wrap: anywhere; }
+.three .pele { aspect-ratio: 1; min-height: 0; }
+.three .pele svg { width: 100%; height: 100%; max-height: none; }
+.over { position: relative; box-shadow: 0 0 0 1px var(--rule); }
+.over img { width: 100%; }
+.over svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 .foot { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-2); max-width: 46rem; }
 

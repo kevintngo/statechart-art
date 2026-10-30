@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 const { plate } = require('../../tools/lib/storybook');
-const { layOut, mapper, contentBox } = require('../../tools/lib/layout');
+const { layOut, mapper, contentBox, saveShapes } = require('../../tools/lib/layout');
 const TC = require('../../tools/lib/tagchart');
 const H = require('./shop');
 const { C } = H;
@@ -13,6 +13,7 @@ async function main() {
   const L = await layOut(path.join(HERE, 'day/layout.mmd'), { face: 'Kevin Serif Bold', svgOut: path.join(HERE, 'out/day-layout.svg') });
   const P = plate({ id: 'day', w: 216, h: 216, ppm: FAST ? 5 : 10, seed: 'boba-day-1', paper: 'hotpress' });
   const m = mapper(contentBox(L), { x: 8, y: 12, w: 200, h: 198 });
+  saveShapes(path.join(HERE, 'out/day-pele.json'), L, m);
   const open = L.clusters.find((c) => c.label[0].text === 'open');
   const wx0 = m.X(open.x), wx1 = m.X(open.x + open.w), wy0 = m.Y(open.y), wy1 = m.Y(open.y + open.h), head = m.Y(open.headY);
 
