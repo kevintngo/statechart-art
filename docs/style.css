@@ -1,0 +1,80 @@
+@font-face { font-family: "Kevin Serif"; src: url(fonts/KevinSerif-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Kevin Sans"; src: url(fonts/KevinSans-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Kevin Sans"; src: url(fonts/KevinSans-Bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+
+:root {
+  --paper: #faf9f6;
+  --ink: #21201f;
+  --ink-2: #57534f;
+  --red: #933323;
+  --green: #2f6b3a;
+  --rule: #dcd8d0;
+  --code: #f2efe8;
+  --serif: "Kevin Serif", "Iowan Old Style", Georgia, serif;
+  --sans: "Kevin Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; border-radius: 0; }
+html { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.6 var(--sans); -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+main { max-width: 1120px; margin: 0 auto; padding: 48px var(--gutter) 72px; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 400; line-height: 1.15; margin: 0; }
+p { margin: 0; text-wrap: pretty; }
+a { color: var(--red); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, pre:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+code { font-family: var(--mono); font-size: 0.88em; }
+img, svg { display: block; max-width: 100%; height: auto; }
+
+.top { max-width: 46rem; }
+.kicker { font-weight: 700; letter-spacing: 0.06em; color: var(--ink-2); }
+.top h1 { margin-top: 6px; font-size: clamp(2.4rem, 7vw, 4.2rem); }
+.lede { margin-top: 18px; color: var(--ink-2); font-size: 1.125rem; }
+.repo { margin-top: 14px; color: var(--ink-2); overflow-wrap: anywhere; }
+.repo a { font-weight: 700; display: inline-block; }
+
+.plates { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: 56px 40px; }
+.plate { margin: 0; }
+.plate img { width: 100%; box-shadow: 0 0 0 1px var(--rule); }
+.plate figcaption { margin-top: 14px; }
+.num { font-family: var(--serif); color: var(--red); margin-right: 0.35em; }
+.plate h2 { display: inline; font-size: 1.7rem; }
+.plate .sub { font-family: var(--serif); font-style: italic; color: var(--ink-2); margin-top: 2px; }
+.plate figcaption p:last-child { margin-top: 8px; color: var(--ink-2); }
+
+.how { margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--rule); }
+.how > h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+.steps { margin: 20px 0 0; padding-left: 1.4em; max-width: 46rem; }
+.steps li { margin-top: 10px; padding-left: 4px; }
+.steps b { font-weight: 700; }
+
+.made { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--rule); }
+.made h3 { font-size: 1.6rem; }
+.stats { margin-top: 6px; color: var(--ink-2); }
+.rules { list-style: none; margin: 14px 0 0; padding: 0; max-width: 46rem; }
+.rules li { display: flex; gap: 10px; align-items: baseline; margin-top: 6px; }
+.rules .mark { flex: none; width: 1.1em; font-weight: 700; }
+.rules .holds .mark::before { content: "\2713"; color: var(--green); }
+.rules .broken .mark::before { content: "\2717"; color: var(--red); }
+.rules code { color: var(--ink-2); }
+.path { margin-top: 16px; max-width: 46rem; }
+.path h4 { font-size: 1.15rem; margin-bottom: 8px; }
+
+.row { margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.row figure { margin: 0; min-width: 0; }
+.row figcaption { margin-top: 8px; font-size: 0.95rem; color: var(--ink-2); }
+pre { margin: 0; padding: 14px 16px; max-height: 420px; overflow: auto; background: var(--code); font: 0.8rem/1.5 var(--mono); color: var(--ink); white-space: pre; }
+.pele { display: flex; align-items: center; justify-content: center; padding: 12px; background: #fff; box-shadow: 0 0 0 1px var(--rule); min-height: 220px;
+  --pele-bg: #ffffff; --pele-fg: #21201f; --pele-muted: #57534f; --pele-line: #21201f; --pele-surface: #faf9f6; --pele-surface-alt: #f1eee7; --pele-border: #8f877d; --pele-font: "Kevin Sans"; }
+.pele svg { width: 100%; max-height: 520px; }
+
+.foot { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--ink-2); max-width: 46rem; }
+
+@media (max-width: 720px) {
+  main { padding-top: 32px; }
+  .row { grid-template-columns: minmax(0, 1fr); }
+  pre { max-height: 320px; }
+}

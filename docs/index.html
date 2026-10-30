@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The business of boba · statechart art</title>
+<meta name="description" content="Four statecharts about running a boba shop: an order, a day, two jobs at once, and a bug TLC finds. Each one is checked by TLC, laid out by pele, and drawn by hand in code.">
+<meta name="theme-color" content="#faf9f6">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://kevintngo.github.io/statechart-art/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="statechart art">
+<meta property="og:title" content="The business of boba">
+<meta property="og:description" content="Four statecharts about running a boba shop, drawn by hand in code.">
+<meta property="og:url" content="https://kevintngo.github.io/statechart-art/">
+<meta property="og:image" content="https://kevintngo.github.io/statechart-art/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The title The business of boba, four statecharts, drawn by hand, beside four pen and coloured pencil plates: an order, a day, two at once and the pearl bug.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@kevin_t_ngo">
+<meta name="twitter:title" content="The business of boba">
+<meta name="twitter:description" content="Four statecharts about running a boba shop, drawn by hand in code.">
+<meta name="twitter:image" content="https://kevintngo.github.io/statechart-art/og.png">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/KevinSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/KevinSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header class="top">
+  <p class="kicker">statechart art</p>
+  <h1>The business of boba</h1>
+  <p class="lede">Four statecharts about running a boba shop, one for each kind of chart <code>/statechart</code> makes: a flat chart, a parent state, two regions at the same time, and a rule that breaks. Each one is a small TLA+ model checked by TLC, laid out by pele, and drawn by hand in pen and coloured pencil, by code.</p>
+  <p class="repo">The code, the models and the drawings are on GitHub: <a href="https://github.com/kevintngo/statechart-art">kevintngo/statechart-art</a></p>
+</header>
+
+<section class="plates" aria-label="The four plates">
+
+  <figure class="plate" id="order">
+    <a href="img/order.jpg"><img src="img/order-1080.jpg" srcset="img/order-1080.jpg 1080w, img/order.jpg 2048w" sizes="(min-width: 780px) 720px, 100vw" width="1080" height="1080" alt="Pen and coloured pencil drawing titled An order, from the line to your hand. The statechart is drawn as paper order tickets pinned up with coloured pushpins and joined by red thread: in line; you order, to ordered; you pay, to paid. From paid, the barista starts if there are pearls, to being made, or money back if the pearls ran out, to refunded. From being made, your number is called, to ready. From ready, it is the wrong drink goes back to being made, and you pick it up leads to in your hand. Around the chart: three customers waiting in line, a cashier at a counter with a till showing 5.50 and coins, a barista shaking a drink beside a service bell and a finished cup, a jar of pearls labelled sold out with a coin on a shelf, and a person with short wavy black hair, a beige polo and an iced coffee on their head holding up a cup of boba milk tea." decoding="async"></a>
+    <figcaption><span class="num">I</span><h2>An order</h2><p class="sub">from the line to your hand</p><p><b>A flat chart with a branch and a loop.</b> Each state is an order ticket pinned up, and each step is a red thread between the pins. The words for each step sit beside its thread.</p></figcaption>
+  </figure>
+
+  <figure class="plate" id="day">
+    <a href="img/day.jpg"><img src="img/day-1080.jpg" srcset="img/day-1080.jpg 1080w, img/day.jpg 2048w" sizes="(min-width: 780px) 720px, 100vw" width="1080" height="1080" alt="Pen and coloured pencil drawing titled A day, at the shop, 7 am to 9 pm. The statechart is drawn as a shop front. Closed, getting ready and closing up are wooden signs. Open is the shop window under a striped awning, with quiet, busy and a rush as notes taped to the glass. At 7 am, closed goes to getting ready; tea and pearls ready leads into open, to quiet; people come in, to busy; school is out, to a rush; it calms down, back to quiet; at 9 pm, if quiet, to closing up; till counted, back to closed. Around the chart: a sunrise, a kettle and a pot of pearls on a stove on a shelf, a moon and stars, a mop in a bucket, a morning glory vine and a planter of flowers under the window." loading="lazy" decoding="async"></a>
+    <figcaption><span class="num">II</span><h2>A day</h2><p class="sub">at the shop, 7 am to 9 pm</p><p><b>A chart with a parent state.</b> Open is a parent state with three states inside, so it is drawn as the shop window: quiet, busy and a rush are notes taped to the glass, and the other states are wooden signs.</p></figcaption>
+  </figure>
+
+  <figure class="plate" id="counter">
+    <a href="img/counter.jpg"><img src="img/counter-1080.jpg" srcset="img/counter-1080.jpg 1080w, img/counter.jpg 2048w" sizes="(min-width: 780px) 720px, 100vw" width="1080" height="1080" alt="Pen and coloured pencil drawing titled Two at once, the barista and the pot. Under a menu board, the statechart shows two regions side by side inside a frame marked at the same time. The barista: barista free; an order comes in, unless cooking pearls, to making a drink; shaken and sealed, to calling a number; picked up, back to barista free. The pot: full of pearls; pearls run low, to running low; a new batch, when barista free, to cooking pearls; chewy again, back to full of pearls. Each condition is coloured like the region it names. Below, a barista shakes a drink behind the counter beside two finished cups and a pager, and a pot of pearls and a kettle sit on a stove." loading="lazy" decoding="async"></a>
+    <figcaption><span class="num">III</span><h2>Two at once</h2><p class="sub">the barista and the pot</p><p><b>Two regions, at the same time.</b> The barista and the pot each move on their own, side by side. A step that waits on the other region says so in brackets, coloured like the region it waits on.</p></figcaption>
+  </figure>
+
+  <figure class="plate" id="bug">
+    <a href="img/bug.jpg"><img src="img/bug-1080.jpg" srcset="img/bug-1080.jpg 1080w, img/bug.jpg 2048w" sizes="(min-width: 780px) 720px, 100vw" width="1080" height="1080" alt="Pen and coloured pencil drawing titled The pearl bug, TLC finds how old pearls get served. A card states the rule: never serve pearls more than 4 hours old. The statechart: just boiled; an hour passes, to chewy, where more hours pass; an hour passes, to getting firm; an hour passes, to too old, where a rush starts. From too old, thrown out leads to thrown out, and a new batch is boiled leads back to just boiled; but a cup is served in a rush leads to an old cup is served, which is stamped rule broken. The path TLC found, from just boiled through too old to the old cup, is traced in red. Around the chart: a ladybug, an hourglass, a magnifying glass over a cup of old pearls, a pot of pearls on a stove and a jar of old pearls." loading="lazy" decoding="async"></a>
+    <figcaption><span class="num">IV</span><h2>The pearl bug</h2><p class="sub">TLC finds how old pearls get served</p><p><b>A rule that breaks, and the path to it.</b> TLC finds a way to break the rule: in a rush, nobody checks how old the pearls are. The chart marks the state that breaks it, and the shortest path to it is traced in red.</p></figcaption>
+  </figure>
+</section>
+
+<section class="how" aria-labelledby="how">
+  <h2 id="how">How they were made</h2>
+  <ol class="steps">
+    <li><b>Model it.</b> A few lines of TLA+ say what can happen in the shop, and which rules must always hold.</li>
+    <li><b>Check it.</b> <code>/statechart</code> runs TLC over every state the model can reach and checks each rule in each one. When a rule breaks, it finds the shortest path to the break.</li>
+    <li><b>Choose the words.</b> A view says what the reader sees in each state and each step. It picks the kind of chart too: a word for a flat chart, a list for parent states, an object for regions.</li>
+    <li><b>Lay it out.</b> pele lays out the Mermaid chart, measuring every word in the letters the drawing uses.</li>
+    <li><b>Draw it.</b> A program draws pele's boxes and lines as things from a boba shop, tickets, signs, notes and cards, in a simulated pen and coloured pencils, and fills the space around them with the shop. Words sit on clean paper, and arrows stop short of what they point at.</li>
+  </ol>
+
+  <article class="made" id="made-order">
+    <h3><span class="num">I</span> An order</h3>
+    <p class="stats">TLC reached 13 states and 17 steps.</p>
+    <ul class="rules"><li class="holds"><span class="mark" aria-hidden="true"></span><span>Every drink being made, ready or handed over has been paid for. <code>PaidForEveryDrink</code></span></li><li class="holds"><span class="mark" aria-hidden="true"></span><span>A refunded order has its money back. <code>RefundsGiveMoneyBack</code></span></li></ul>
+    
+    <div class="row">
+      <figure><pre tabindex="0" aria-label="The model, Order.tla"><code>---- MODULE Order ----
+EXTENDS Naturals
+VARIABLES order, paid, pearls, remakes
+
+vars == &lt;&lt;order, paid, pearls, remakes&gt;&gt;
+
+Init ==
+  /\ order = &quot;in line&quot;
+  /\ paid = FALSE
+  /\ pearls = &quot;plenty&quot;
+  /\ remakes = 0
+
+YouOrder ==
+  /\ order = &quot;in line&quot;
+  /\ order' = &quot;ordered&quot;
+  /\ UNCHANGED &lt;&lt;paid, pearls, remakes&gt;&gt;
+
+YouPay ==
+  /\ order = &quot;ordered&quot;
+  /\ order' = &quot;paid&quot;
+  /\ paid' = TRUE
+  /\ UNCHANGED &lt;&lt;pearls, remakes&gt;&gt;
+
+PearlsRunOut ==
+  /\ pearls = &quot;plenty&quot;
+  /\ order \in {&quot;in line&quot;, &quot;ordered&quot;, &quot;paid&quot;}
+  /\ pearls' = &quot;out&quot;
+  /\ UNCHANGED &lt;&lt;order, paid, remakes&gt;&gt;
+
+BaristaStarts ==
+  /\ order = &quot;paid&quot;
+  /\ pearls = &quot;plenty&quot;
+  /\ order' = &quot;being made&quot;
+  /\ UNCHANGED &lt;&lt;paid, pearls, remakes&gt;&gt;
+
+MoneyBack ==
+  /\ order = &quot;paid&quot;
+  /\ pearls = &quot;out&quot;
+  /\ order' = &quot;refunded&quot;
+  /\ paid' = FALSE
+  /\ UNCHANGED &lt;&lt;pearls, remakes&gt;&gt;
+
+NumberCalled ==
+  /\ order = &quot;being made&quot;
+  /\ order' = &quot;ready&quot;
+  /\ UNCHANGED &lt;&lt;paid, pearls, remakes&gt;&gt;
+
+WrongDrink ==
+  /\ order = &quot;ready&quot;
+  /\ remakes &lt; 1
+  /\ order' = &quot;being made&quot;
+  /\ remakes' = remakes + 1
+  /\ UNCHANGED &lt;&lt;paid, pearls&gt;&gt;
+
+YouPickItUp ==
+  /\ order = &quot;ready&quot;
+  /\ order' = &quot;in your hand&quot;
+  /\ UNCHANGED &lt;&lt;paid, pearls, remakes&gt;&gt;
+
+Done ==
+  /\ order \in {&quot;in your hand&quot;, &quot;refunded&quot;}
+  /\ UNCHANGED vars
+
+Next ==
+  \/ YouOrder \/ YouPay \/ PearlsRunOut \/ BaristaStarts \/ MoneyBack
+  \/ NumberCalled \/ WrongDrink \/ YouPickItUp \/ Done
+
+Spec == Init /\ [][Next]_vars
+
+TypeOK ==
+  /\ order \in {&quot;in line&quot;, &quot;ordered&quot;, &quot;paid&quot;, &quot;being made&quot;, &quot;ready&quot;, &quot;in your hand&quot;, &quot;refunded&quot;}
+  /\ paid \in BOOLEAN
+  /\ pearls \in {&quot;plenty&quot;, &quot;out&quot;}
+  /\ remakes \in 0..1
+
+PaidForEveryDrink == order \in {&quot;being made&quot;, &quot;ready&quot;, &quot;in your hand&quot;} =&gt; paid
+RefundsGiveMoneyBack == order = &quot;refunded&quot; =&gt; ~paid
+NoDrinkWithoutPearls == order = &quot;being made&quot; =&gt; pearls = &quot;plenty&quot; \/ remakes &gt; 0
+====</code></pre><figcaption>1. The model, in TLA+</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The view for An order"><code>export const title = &quot;an order of boba&quot;;
+
+export const state = (v) =&gt; v.order;
+
+const STEPS = {
+  YouOrder: &quot;you order&quot;,
+  YouPay: &quot;you pay&quot;,
+  PearlsRunOut: &quot;the pearls run out&quot;,
+  BaristaStarts: &quot;the barista starts [if there are pearls]&quot;,
+  MoneyBack: &quot;money back [if the pearls ran out]&quot;,
+  NumberCalled: &quot;your number is called&quot;,
+  WrongDrink: &quot;it's the wrong drink&quot;,
+  YouPickItUp: &quot;you pick it up&quot;,
+  Done: &quot;you drink it&quot;,
+};
+
+export const step = (action) =&gt; STEPS[action];</code></pre><figcaption>2. The view: the reader's words for each state and step</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The Mermaid chart for An order"><code>---
+title: &quot;an order of boba&quot;
+config:
+  state:
+    rankSpacing: 26
+    nodeSpacing: 60
+---
+stateDiagram-v2
+  s0: in line
+  s1: ordered
+  s2: paid
+  s3: being made
+  s4: ready
+  s5: refunded
+  s6: in your hand
+  [*] --&gt; s0
+  s0 --&gt; s1: you order
+  s1 --&gt; s2: you pay
+  s2 --&gt; s3: the barista starts [if there are pearls]
+  s3 --&gt; s4: your number is called
+  s2 --&gt; s5: money back [if the pearls ran out]
+  s4 --&gt; s3: it's the wrong drink
+  s4 --&gt; s6: you pick it up</code></pre><figcaption>3. The chart /statechart wrote, with a line of layout for pele</figcaption></figure>
+      <figure><div class="pele"><svg aria-label="pele's plain layout of An order" xmlns="http://www.w3.org/2000/svg" class="pele pele-state" viewBox="0 0 522 634" width="522" height="634" style="--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,Kevin Sans)" fill="var(--_fg)" role="img" aria-roledescription="state"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="261" y="29.6">an order of boba</tspan></text><g transform="translate(0,36)"><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge pele-transition" data-id="edge0"><path d="M320.22,26L320.22,45"/><path class="pele-marker" d="M320.22,52L316.86,44L323.58,44Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge1"><path d="M320.22,96L320.22,140"/><path class="pele-marker" d="M320.22,147L316.86,139L323.58,139Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge2"><path d="M320.22,191L320.22,235"/><path class="pele-marker" d="M320.22,242L316.86,234L323.58,234Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge3"><path d="M312.22,286C312.22,289.88 219.29,291.62 219.29,295.5L219.29,345"/><path class="pele-marker" d="M219.29,352L215.93,344L222.65,344Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge4"><path d="M198.01,396L198.01,401.69C198.01,404.23 113.72,406.46 113.72,409L113.72,434C113.72,435.13 211.29,437.38 211.29,438.5L211.29,440"/><path class="pele-marker" d="M211.29,447L207.93,439L214.65,439Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge5"><path d="M328.22,286C328.22,289.88 421.16,291.62 421.16,295.5L421.16,345"/><path class="pele-marker" d="M421.16,352L417.8,344L424.52,344Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge6"><path d="M227.29,447L227.29,441.31C227.29,439.12 324.86,436.19 324.86,434L324.86,409C324.86,407.88 240.57,405.63 240.57,404.5L240.57,403"/><path class="pele-marker" d="M240.57,396L243.93,404L237.21,404Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge7"><path d="M219.29,491L219.29,535"/><path class="pele-marker" d="M219.29,542L215.93,534L222.65,534Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="edge1"><rect x="274.9" y="107.5" width="90.66" height="21" rx="3" fill="var(--_bg)"/><text x="320.22" y="122.9" text-anchor="middle">you order</text></g><g class="pele-edge-label" data-id="edge2"><rect x="282.88" y="202.5" width="74.7" height="21" rx="3" fill="var(--_bg)"/><text x="320.22" y="217.9" text-anchor="middle">you pay</text></g><g class="pele-edge-label" data-id="edge3"><rect x="123.74" y="297.5" width="191.11" height="36" rx="3" fill="var(--_bg)"/><text text-anchor="middle" xml:space="preserve"><tspan x="219.29" y="311.4">the barista starts [if</tspan><tspan x="219.29" y="329.4">there are pearls]</tspan></text></g><g class="pele-edge-label" data-id="edge4"><rect x="14" y="411" width="199.45" height="21" rx="3" fill="var(--_bg)"/><text x="113.72" y="426.4" text-anchor="middle">your number is called</text></g><g class="pele-edge-label" data-id="edge5"><rect x="334.84" y="297.5" width="172.63" height="36" rx="3" fill="var(--_bg)"/><text text-anchor="middle" xml:space="preserve"><tspan x="421.16" y="311.4">money back [if the</tspan><tspan x="421.16" y="329.4">pearls ran out]</tspan></text></g><g class="pele-edge-label" data-id="edge6"><rect x="233.45" y="411" width="182.82" height="21" rx="3" fill="var(--_bg)"/><text x="324.86" y="426.4" text-anchor="middle">it's the wrong drink</text></g><g class="pele-edge-label" data-id="edge7"><rect x="154.71" y="502.5" width="129.16" height="21" rx="3" fill="var(--_bg)"/><text x="219.29" y="517.9" text-anchor="middle">you pick it up</text></g></g><g class="pele-nodes"><g class="pele-node pele-state" data-id="s0" transform="translate(320.22,74)"><rect x="-48.63" y="-22" width="97.26" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">in line</text></g><g class="pele-node pele-state" data-id="s1" transform="translate(320.22,169)"><rect x="-53.42" y="-22" width="106.83" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">ordered</text></g><g class="pele-node pele-state" data-id="s2" transform="translate(320.22,264)"><rect x="-37.54" y="-22" width="75.07" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">paid</text></g><g class="pele-node pele-state" data-id="s3" transform="translate(219.29,374)"><rect x="-73.28" y="-22" width="146.56" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">being made</text></g><g class="pele-node pele-state" data-id="s4" transform="translate(219.29,469)"><rect x="-43.2" y="-22" width="86.4" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">ready</text></g><g class="pele-node pele-state" data-id="s5" transform="translate(421.16,374)"><rect x="-60.74" y="-22" width="121.47" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">refunded</text></g><g class="pele-node pele-state" data-id="s6" transform="translate(219.29,564)"><rect x="-81.46" y="-22" width="162.93" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">in your hand</text></g><g class="pele-node pele-state-start" data-id="root_start" transform="translate(320.22,19)"><circle r="7" fill="var(--_l)"/></g></g></g></svg></div><figcaption>4. pele's plain layout, which the drawing follows</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="made" id="made-day">
+    <h3><span class="num">II</span> A day</h3>
+    <p class="stats">TLC reached 8 states and 9 steps.</p>
+    <ul class="rules"><li class="holds"><span class="mark" aria-hidden="true"></span><span>The shop is open only once the tea is brewed and the pearls are boiled. <code>OpenOnlyWhenReady</code></span></li><li class="holds"><span class="mark" aria-hidden="true"></span><span>The shop closes up only when no one is inside. <code>CloseOnlyWhenEmpty</code></span></li><li class="holds"><span class="mark" aria-hidden="true"></span><span>The till is counted only after the floor is mopped. <code>CountAfterMopping</code></span></li></ul>
+    
+    <div class="row">
+      <figure><pre tabindex="0" aria-label="The model, Day.tla"><code>---- MODULE Day ----
+VARIABLES phase, teaReady, pearlsReady, crowd, mopped
+
+vars == &lt;&lt;phase, teaReady, pearlsReady, crowd, mopped&gt;&gt;
+
+Phases == {&quot;closed&quot;, &quot;brewing&quot;, &quot;boiling&quot;, &quot;quiet&quot;, &quot;busy&quot;, &quot;rush&quot;, &quot;cleaning&quot;, &quot;counting&quot;}
+
+Init ==
+  /\ phase = &quot;closed&quot;
+  /\ teaReady = FALSE
+  /\ pearlsReady = FALSE
+  /\ crowd = 0
+  /\ mopped = FALSE
+
+Unlock ==
+  /\ phase = &quot;closed&quot;
+  /\ phase' = &quot;brewing&quot;
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, crowd, mopped&gt;&gt;
+
+TeaSteeped ==
+  /\ phase = &quot;brewing&quot;
+  /\ phase' = &quot;boiling&quot;
+  /\ teaReady' = TRUE
+  /\ UNCHANGED &lt;&lt;pearlsReady, crowd, mopped&gt;&gt;
+
+DoorsOpen ==
+  /\ phase = &quot;boiling&quot;
+  /\ phase' = &quot;quiet&quot;
+  /\ pearlsReady' = TRUE
+  /\ UNCHANGED &lt;&lt;teaReady, crowd, mopped&gt;&gt;
+
+PeopleComeIn ==
+  /\ phase = &quot;quiet&quot;
+  /\ phase' = &quot;busy&quot;
+  /\ crowd' = 1
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, mopped&gt;&gt;
+
+SchoolLetsOut ==
+  /\ phase = &quot;busy&quot;
+  /\ phase' = &quot;rush&quot;
+  /\ crowd' = 2
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, mopped&gt;&gt;
+
+RushPasses ==
+  /\ phase = &quot;rush&quot;
+  /\ phase' = &quot;quiet&quot;
+  /\ crowd' = 0
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, mopped&gt;&gt;
+
+DoorsClose ==
+  /\ phase = &quot;quiet&quot;
+  /\ crowd = 0
+  /\ phase' = &quot;cleaning&quot;
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, crowd, mopped&gt;&gt;
+
+FloorMopped ==
+  /\ phase = &quot;cleaning&quot;
+  /\ phase' = &quot;counting&quot;
+  /\ mopped' = TRUE
+  /\ UNCHANGED &lt;&lt;teaReady, pearlsReady, crowd&gt;&gt;
+
+TillAddsUp ==
+  /\ phase = &quot;counting&quot;
+  /\ phase' = &quot;closed&quot;
+  /\ teaReady' = FALSE
+  /\ pearlsReady' = FALSE
+  /\ mopped' = FALSE
+  /\ UNCHANGED crowd
+
+Next ==
+  \/ Unlock \/ TeaSteeped \/ DoorsOpen \/ PeopleComeIn \/ SchoolLetsOut
+  \/ RushPasses \/ DoorsClose \/ FloorMopped \/ TillAddsUp
+
+Spec == Init /\ [][Next]_vars
+
+TypeOK ==
+  /\ phase \in Phases
+  /\ teaReady \in BOOLEAN
+  /\ pearlsReady \in BOOLEAN
+  /\ crowd \in {0, 1, 2}
+  /\ mopped \in BOOLEAN
+
+OpenOnlyWhenReady == phase \in {&quot;quiet&quot;, &quot;busy&quot;, &quot;rush&quot;} =&gt; teaReady /\ pearlsReady
+CloseOnlyWhenEmpty == phase \in {&quot;cleaning&quot;, &quot;counting&quot;} =&gt; crowd = 0
+CountAfterMopping == phase = &quot;counting&quot; =&gt; mopped
+====</code></pre><figcaption>1. The model, in TLA+</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The view for A day"><code>export const title = &quot;a day at the shop&quot;;
+
+const PATH = {
+  closed: [&quot;closed&quot;],
+  brewing: [&quot;getting ready&quot;],
+  boiling: [&quot;getting ready&quot;],
+  quiet: [&quot;open&quot;, &quot;quiet&quot;],
+  busy: [&quot;open&quot;, &quot;busy&quot;],
+  rush: [&quot;open&quot;, &quot;a rush&quot;],
+  cleaning: [&quot;closing up&quot;],
+  counting: [&quot;closing up&quot;],
+};
+
+export const state = (v) =&gt; PATH[v.phase];
+
+const STEPS = {
+  Unlock: &quot;7 am&quot;,
+  TeaSteeped: &quot;tea steeped&quot;,
+  DoorsOpen: &quot;tea and pearls ready&quot;,
+  PeopleComeIn: &quot;people come in&quot;,
+  SchoolLetsOut: &quot;school's out&quot;,
+  RushPasses: &quot;it calms down&quot;,
+  DoorsClose: &quot;9 pm [if quiet]&quot;,
+  FloorMopped: &quot;floor mopped&quot;,
+  TillAddsUp: &quot;till counted&quot;,
+};
+
+export const step = (action) =&gt; STEPS[action];</code></pre><figcaption>2. The view: the reader's words for each state and step</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The Mermaid chart for A day"><code>---
+title: &quot;a day at the shop&quot;
+config:
+  state:
+    rankSpacing: 26
+    nodeSpacing: 34
+---
+stateDiagram-v2
+  direction TB
+  s0: closed
+  s1: getting ready
+  state &quot;open&quot; as s2 {
+    direction TB
+    s3: quiet
+    s4: busy
+    s5: a rush
+  }
+  s6: closing up
+  [*] --&gt; s0
+  s0 --&gt; s1: 7 am
+  s1 --&gt; s3: tea and pearls ready
+  s3 --&gt; s6: 9 pm [if quiet]
+  s3 --&gt; s4: people come in
+  s4 --&gt; s5: school's out
+  s6 --&gt; s0: till counted
+  s5 --&gt; s3: it calms down</code></pre><figcaption>3. The chart /statechart wrote, with a line of layout for pele</figcaption></figure>
+      <figure><div class="pele"><svg aria-label="pele's plain layout of A day" xmlns="http://www.w3.org/2000/svg" class="pele pele-state" viewBox="0 0 481 727" width="481" height="727" style="--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,Kevin Sans)" fill="var(--_fg)" role="img" aria-roledescription="state"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="240.5" y="29.6">a day at the shop</tspan></text><g transform="translate(0,36)"><g class="pele-clusters"><g class="pele-cluster pele-state-composite" data-id="s2"><rect x="12" y="242" width="316.46" height="342" rx="10" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)"/><path d="M12,278H328.46" fill="none" stroke="var(--_b)"/><text class="pele-cluster-label" x="170.23" y="265.6" text-anchor="middle">open</text></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge pele-transition" data-id="edge0"><path d="M318.51,26L318.51,45"/><path class="pele-marker" d="M318.51,52L315.15,44L321.87,44Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge1"><path d="M310.51,96L310.51,100.16C310.51,101.51 226.17,104.15 226.17,105.5L226.17,140"/><path class="pele-marker" d="M226.17,147L222.81,139L229.53,139Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge2"><path d="M226.17,191L226.17,307"/><path class="pele-marker" d="M226.17,314L222.81,306L229.53,306Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge3"><path d="M242.17,358L242.17,364.89C242.17,369.32 312.46,369.32 312.46,373.75L312.46,628"/><path class="pele-marker" d="M312.46,635L309.1,627L315.82,627Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge4"><path d="M226.17,358L226.17,402"/><path class="pele-marker" d="M226.17,409L222.81,401L229.53,401Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge5"><path d="M226.17,453L226.17,487.5C226.17,490.39 155.94,491.73 155.94,494.63L155.94,497"/><path class="pele-marker" d="M155.94,504L152.58,496L159.3,496Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge6"><path d="M410.84,635L410.84,147C410.84,128 326.51,128 326.51,109L326.51,103"/><path class="pele-marker" d="M326.51,96L329.87,104L323.15,104Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge7"><path d="M139.94,504L139.94,491C139.94,472 95.26,472 95.26,453L95.26,373.75C95.26,372.11 210.17,368.83 210.17,367.19L210.17,365"/><path class="pele-marker" d="M210.17,358L213.53,366L206.81,366Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="edge1"><rect x="200.32" y="107.5" width="51.69" height="21" rx="3" fill="var(--_bg)"/><text x="226.17" y="122.9" text-anchor="middle">7 am</text></g><g class="pele-edge-label" data-id="edge2"><rect x="131.87" y="202.5" width="188.59" height="21" rx="3" fill="var(--_bg)"/><text x="226.17" y="217.9" text-anchor="middle">tea and pearls ready</text></g><g class="pele-edge-label" data-id="edge3"><rect x="244.85" y="595.5" width="135.22" height="21" rx="3" fill="var(--_bg)"/><text x="312.46" y="610.9" text-anchor="middle">9 pm [if quiet]</text></g><g class="pele-edge-label" data-id="edge4"><rect x="157.88" y="369.5" width="136.58" height="21" rx="3" fill="var(--_bg)"/><text x="226.17" y="384.9" text-anchor="middle">people come in</text></g><g class="pele-edge-label" data-id="edge5"><rect x="169.35" y="464.5" width="113.64" height="21" rx="3" fill="var(--_bg)"/><text x="226.17" y="479.9" text-anchor="middle">school's out</text></g><g class="pele-edge-label" data-id="edge6"><rect x="355.46" y="402.5" width="110.77" height="21" rx="3" fill="var(--_bg)"/><text x="410.84" y="417.9" text-anchor="middle">till counted</text></g><g class="pele-edge-label" data-id="edge7"><rect x="30" y="420.5" width="130.53" height="21" rx="3" fill="var(--_bg)"/><text x="95.26" y="435.9" text-anchor="middle">it calms down</text></g></g><g class="pele-nodes"><g class="pele-node pele-state" data-id="s0" transform="translate(318.51,74)"><rect x="-46.66" y="-22" width="93.33" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">closed</text></g><g class="pele-node pele-state" data-id="s1" transform="translate(226.17,169)"><rect x="-82.58" y="-22" width="165.15" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">getting ready</text></g><g class="pele-node pele-state" data-id="s6" transform="translate(361.65,657)"><rect x="-67.25" y="-22" width="134.5" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">closing up</text></g><g class="pele-node pele-state-start" data-id="root_start" transform="translate(318.51,19)"><circle r="7" fill="var(--_l)"/></g><g class="pele-node pele-state" data-id="s3" transform="translate(226.17,336)"><rect x="-41.55" y="-22" width="83.1" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">quiet</text></g><g class="pele-node pele-state" data-id="s4" transform="translate(226.17,431)"><rect x="-38.64" y="-22" width="77.28" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">busy</text></g><g class="pele-node pele-state" data-id="s5" transform="translate(147.94,526)"><rect x="-49.01" y="-22" width="98.02" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">a rush</text></g></g></g></svg></div><figcaption>4. pele's plain layout, which the drawing follows</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="made" id="made-counter">
+    <h3><span class="num">III</span> Two at once</h3>
+    <p class="stats">TLC reached 7 states and 11 steps.</p>
+    <ul class="rules"><li class="holds"><span class="mark" aria-hidden="true"></span><span>The barista is never making a drink while a batch of pearls is cooking. <code>NoDrinkWhileCooking</code></span></li></ul>
+    
+    <div class="row">
+      <figure><pre tabindex="0" aria-label="The model, Counter.tla"><code>---- MODULE Counter ----
+VARIABLES barista, pot
+
+vars == &lt;&lt;barista, pot&gt;&gt;
+
+Init ==
+  /\ barista = &quot;free&quot;
+  /\ pot = &quot;full&quot;
+
+OrderComesIn ==
+  /\ barista = &quot;free&quot;
+  /\ pot # &quot;cooking&quot;
+  /\ barista' = &quot;making&quot;
+  /\ UNCHANGED pot
+
+ShakenAndSealed ==
+  /\ barista = &quot;making&quot;
+  /\ barista' = &quot;calling&quot;
+  /\ UNCHANGED pot
+
+PickedUp ==
+  /\ barista = &quot;calling&quot;
+  /\ barista' = &quot;free&quot;
+  /\ UNCHANGED pot
+
+PearlsRunLow ==
+  /\ pot = &quot;full&quot;
+  /\ pot' = &quot;low&quot;
+  /\ UNCHANGED barista
+
+NewBatch ==
+  /\ pot = &quot;low&quot;
+  /\ barista = &quot;free&quot;
+  /\ pot' = &quot;cooking&quot;
+  /\ UNCHANGED barista
+
+ChewyAgain ==
+  /\ pot = &quot;cooking&quot;
+  /\ pot' = &quot;full&quot;
+  /\ UNCHANGED barista
+
+Next == OrderComesIn \/ ShakenAndSealed \/ PickedUp \/ PearlsRunLow \/ NewBatch \/ ChewyAgain
+
+Spec == Init /\ [][Next]_vars
+
+TypeOK ==
+  /\ barista \in {&quot;free&quot;, &quot;making&quot;, &quot;calling&quot;}
+  /\ pot \in {&quot;full&quot;, &quot;low&quot;, &quot;cooking&quot;}
+
+NoDrinkWhileCooking == barista # &quot;free&quot; =&gt; pot # &quot;cooking&quot;
+====</code></pre><figcaption>1. The model, in TLA+</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The view for Two at once"><code>export const title = &quot;behind the counter&quot;;
+
+const BARISTA = { free: &quot;barista free&quot;, making: &quot;making a drink&quot;, calling: &quot;calling a number&quot; };
+const POT = { full: &quot;full of pearls&quot;, low: &quot;running low&quot;, cooking: &quot;cooking pearls&quot; };
+
+export const state = (v) =&gt; ({ &quot;the barista&quot;: BARISTA[v.barista], &quot;the pot&quot;: POT[v.pot] });
+
+const STEPS = {
+  OrderComesIn: &quot;an order comes in&quot;,
+  ShakenAndSealed: &quot;shaken and sealed&quot;,
+  PickedUp: &quot;picked up&quot;,
+  PearlsRunLow: &quot;pearls run low&quot;,
+  NewBatch: &quot;a new batch&quot;,
+  ChewyAgain: &quot;chewy again&quot;,
+};
+
+export const step = (action) =&gt; STEPS[action];</code></pre><figcaption>2. The view: the reader's words for each state and step</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The Mermaid chart for Two at once"><code>---
+title: &quot;behind the counter&quot;
+config:
+  state:
+    rankSpacing: 24
+    nodeSpacing: 30
+---
+stateDiagram-v2
+  direction LR
+  state &quot;At the same time&quot; as all {
+    state &quot;the barista&quot; as r0 {
+      s0: barista free
+      s1: making a drink
+      s2: calling a number
+      [*] --&gt; s0
+      s0 --&gt; s1: an order comes in [unless cooking pearls]
+      s1 --&gt; s2: shaken and sealed
+      s2 --&gt; s0: picked up
+    }
+    --
+    state &quot;the pot&quot; as r1 {
+      s3: full of pearls
+      s4: running low
+      s5: cooking pearls
+      [*] --&gt; s3
+      s3 --&gt; s4: pearls run low
+      s4 --&gt; s5: a new batch [when barista free]
+      s5 --&gt; s3: chewy again
+    }
+  }</code></pre><figcaption>3. The chart /statechart wrote, with a line of layout for pele</figcaption></figure>
+      <figure><div class="pele"><svg aria-label="pele's plain layout of Two at once" xmlns="http://www.w3.org/2000/svg" class="pele pele-state" viewBox="0 0 803 517" width="803" height="517" style="--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,Kevin Sans)" fill="var(--_fg)" role="img" aria-roledescription="state"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="401.5" y="29.6">behind the counter</tspan></text><g transform="translate(0,36)"><g class="pele-clusters"><g class="pele-cluster pele-state-composite" data-id="all"><rect x="12" y="12" width="778.69" height="457" rx="10" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)"/><path d="M12,48H790.69" fill="none" stroke="var(--_b)"/><text class="pele-cluster-label" x="401.34" y="35.6" text-anchor="middle">At the same time</text></g><g class="pele-cluster pele-state-composite" data-id="r0"><rect x="38" y="74" width="339.45" height="369" rx="10" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)"/><path d="M38,110H377.45" fill="none" stroke="var(--_b)"/><text class="pele-cluster-label" x="207.73" y="97.6" text-anchor="middle">the barista</text></g><g class="pele-cluster pele-state-composite" data-id="r1"><rect x="427.45" y="83" width="337.23" height="351" rx="10" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)"/><path d="M427.45,119H764.69" fill="none" stroke="var(--_b)"/><text class="pele-cluster-label" x="596.07" y="106.6" text-anchor="middle">the pot</text></g></g><g class="pele-dividers" stroke-dasharray="4 4" fill="none" stroke="var(--_b)"><path class="pele-divider" d="M402.45,48V469"/></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge pele-transition" data-id="edge0"><path d="M231.03,140L231.03,157"/><path class="pele-marker" d="M231.03,164L227.67,156L234.39,156Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge1"><path d="M208.85,208L208.85,211.72C208.85,213.23 148.42,214.99 148.42,216.5L148.42,283"/><path class="pele-marker" d="M148.42,290L145.06,282L151.78,282Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge2"><path d="M148.42,334L148.42,376"/><path class="pele-marker" d="M148.42,383L145.06,375L151.78,375Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge3"><path d="M313.64,383L313.64,290C313.64,255.5 253.21,255.5 253.21,221L253.21,215"/><path class="pele-marker" d="M253.21,208L256.57,216L249.85,216Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge4"><path d="M610.34,149L610.34,166"/><path class="pele-marker" d="M610.34,173L606.98,165L613.7,165Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge5"><path d="M581.63,217L581.63,220.72C581.63,222.53 531.15,223.69 531.15,225.5L531.15,259"/><path class="pele-marker" d="M531.15,266L527.79,258L534.51,258Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge6"><path d="M531.15,310L531.15,358.5C531.15,361.69 574.11,361.69 574.11,364.88L574.11,367"/><path class="pele-marker" d="M574.11,374L570.75,366L577.47,366Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge7"><path d="M646.57,374L646.57,361C646.57,335.5 689.52,335.5 689.52,310L689.52,266C689.52,248 639.04,248 639.04,230L639.04,224"/><path class="pele-marker" d="M639.04,217L642.4,225L635.68,225Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="edge1"><rect x="65.14" y="218.5" width="166.55" height="54" rx="3" fill="var(--_bg)"/><text text-anchor="middle" xml:space="preserve"><tspan x="148.42" y="232.4">an order comes in</tspan><tspan x="148.42" y="250.4">[unless cooking</tspan><tspan x="148.42" y="268.4">pearls]</tspan></text></g><g class="pele-edge-label" data-id="edge2"><rect x="62.37" y="344.5" width="172.09" height="21" rx="3" fill="var(--_bg)"/><text x="148.42" y="359.9" text-anchor="middle">shaken and sealed</text></g><g class="pele-edge-label" data-id="edge3"><rect x="267.83" y="301.5" width="91.62" height="21" rx="3" fill="var(--_bg)"/><text x="313.64" y="316.9" text-anchor="middle">picked up</text></g><g class="pele-edge-label" data-id="edge5"><rect x="464.77" y="227.5" width="132.75" height="21" rx="3" fill="var(--_bg)"/><text x="531.15" y="242.9" text-anchor="middle">pearls run low</text></g><g class="pele-edge-label" data-id="edge6"><rect x="445.45" y="320.5" width="171.39" height="36" rx="3" fill="var(--_bg)"/><text text-anchor="middle" xml:space="preserve"><tspan x="531.15" y="334.4">a new batch [when</tspan><tspan x="531.15" y="352.4">barista free]</tspan></text></g><g class="pele-edge-label" data-id="edge7"><rect x="632.36" y="277.5" width="114.33" height="21" rx="3" fill="var(--_bg)"/><text x="689.52" y="292.9" text-anchor="middle">chewy again</text></g></g><g class="pele-nodes"><g class="pele-node pele-state" data-id="s0" transform="translate(231.03,186)"><rect x="-74.18" y="-22" width="148.35" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">barista free</text></g><g class="pele-node pele-state" data-id="s1" transform="translate(148.42,312)"><rect x="-94.42" y="-22" width="188.83" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">making a drink</text></g><g class="pele-node pele-state" data-id="s2" transform="translate(231.03,405)"><rect x="-101.9" y="-22" width="203.79" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">calling a number</text></g><g class="pele-node pele-state-start" data-id="r0_start" transform="translate(231.03,133)"><circle r="7" fill="var(--_l)"/></g><g class="pele-node pele-state" data-id="s3" transform="translate(610.34,195)"><rect x="-80.7" y="-22" width="161.41" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">full of pearls</text></g><g class="pele-node pele-state" data-id="s4" transform="translate(531.15,288)"><rect x="-76.21" y="-22" width="152.42" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">running low</text></g><g class="pele-node pele-state" data-id="s5" transform="translate(610.34,396)"><rect x="-88.23" y="-22" width="176.46" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">cooking pearls</text></g><g class="pele-node pele-state-start" data-id="r1_start" transform="translate(610.34,142)"><circle r="7" fill="var(--_l)"/></g></g></g></svg></div><figcaption>4. pele's plain layout, which the drawing follows</figcaption></figure>
+    </div>
+  </article>
+
+  <article class="made" id="made-bug">
+    <h3><span class="num">IV</span> The pearl bug</h3>
+    <p class="stats">TLC reached 36 states and 90 steps.</p>
+    <ul class="rules"><li class="broken"><span class="mark" aria-hidden="true"></span><span>Pearls are never served more than 4 hours after boiling. It breaks. <code>NeverServeOldPearls</code></span></li></ul>
+    <div class="path"><h4>The path TLC found</h4><pre tabindex="0" aria-label="The path TLC found to the broken rule"><code>The shortest path has 6 steps:
+0. just boiled
+1. an hour passes: chewy
+2. an hour passes: chewy
+3. an hour passes: getting firm
+4. an hour passes: too old
+5. a rush starts: too old
+6. a cup is served [in a rush]: an old cup is served</code></pre></div>
+    <div class="row">
+      <figure><pre tabindex="0" aria-label="The model, Bug.tla"><code>---- MODULE Bug ----
+EXTENDS Naturals
+VARIABLES age, batch, rush, served
+
+vars == &lt;&lt;age, batch, rush, served&gt;&gt;
+
+Init ==
+  /\ age = 0
+  /\ batch = &quot;in the pot&quot;
+  /\ rush = FALSE
+  /\ served = &quot;nothing yet&quot;
+
+AnHourPasses ==
+  /\ batch = &quot;in the pot&quot;
+  /\ age &lt; 4
+  /\ age' = age + 1
+  /\ UNCHANGED &lt;&lt;batch, rush, served&gt;&gt;
+
+ServeACup ==
+  /\ batch = &quot;in the pot&quot;
+  /\ served # &quot;an old cup&quot;
+  /\ (age &lt; 4 \/ rush)
+  /\ served' = IF age &lt; 4 THEN &quot;a fresh cup&quot; ELSE &quot;an old cup&quot;
+  /\ UNCHANGED &lt;&lt;age, batch, rush&gt;&gt;
+
+RushStarts ==
+  /\ ~rush
+  /\ rush' = TRUE
+  /\ UNCHANGED &lt;&lt;age, batch, served&gt;&gt;
+
+RushEnds ==
+  /\ rush
+  /\ rush' = FALSE
+  /\ UNCHANGED &lt;&lt;age, batch, served&gt;&gt;
+
+ThrowOut ==
+  /\ batch = &quot;in the pot&quot;
+  /\ age = 4
+  /\ batch' = &quot;thrown out&quot;
+  /\ UNCHANGED &lt;&lt;age, rush, served&gt;&gt;
+
+NewBatch ==
+  /\ batch = &quot;thrown out&quot;
+  /\ batch' = &quot;in the pot&quot;
+  /\ age' = 0
+  /\ UNCHANGED &lt;&lt;rush, served&gt;&gt;
+
+Next == AnHourPasses \/ ServeACup \/ RushStarts \/ RushEnds \/ ThrowOut \/ NewBatch
+
+Spec == Init /\ [][Next]_vars
+
+TypeOK ==
+  /\ age \in 0..4
+  /\ batch \in {&quot;in the pot&quot;, &quot;thrown out&quot;}
+  /\ rush \in BOOLEAN
+  /\ served \in {&quot;nothing yet&quot;, &quot;a fresh cup&quot;, &quot;an old cup&quot;}
+
+NeverServeOldPearls == served # &quot;an old cup&quot;
+====</code></pre><figcaption>1. The model, in TLA+</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The view for The pearl bug"><code>export const title = &quot;the pearl bug&quot;;
+
+const AGE = [&quot;just boiled&quot;, &quot;chewy&quot;, &quot;chewy&quot;, &quot;getting firm&quot;, &quot;too old&quot;];
+
+export const state = (v) =&gt;
+  v.served === &quot;an old cup&quot; ? &quot;an old cup is served&quot;
+  : v.batch === &quot;thrown out&quot; ? &quot;thrown out&quot;
+  : AGE[v.age];
+
+const STEPS = {
+  AnHourPasses: &quot;an hour passes&quot;,
+  ServeACup: &quot;a cup is served&quot;,
+  RushStarts: &quot;a rush starts&quot;,
+  RushEnds: &quot;the rush ends&quot;,
+  ThrowOut: &quot;thrown out&quot;,
+  NewBatch: &quot;a new batch is boiled&quot;,
+};
+
+export const step = (action, from, to) =&gt;
+  action === &quot;ServeACup&quot; &amp;&amp; to.served === &quot;an old cup&quot; ? &quot;a cup is served [in a rush]&quot; : STEPS[action];</code></pre><figcaption>2. The view: the reader's words for each state and step</figcaption></figure>
+      <figure><pre tabindex="0" aria-label="The Mermaid chart for The pearl bug"><code>---
+title: &quot;the pearl bug&quot;
+config:
+  state:
+    rankSpacing: 26
+    nodeSpacing: 40
+---
+stateDiagram-v2
+  state &quot;Legend&quot; as legend {
+    lg0: Breaks NeverServeOldPearls
+    lg1: Path to the NeverServeOldPearls bug
+  }
+  class lg0 breaks
+  class lg1 bugPath
+  s0: just boiled
+  s1: chewy
+  s2: getting firm
+  s3: too old
+  s4: thrown out
+  s5: an old cup is served
+  [*] --&gt; s0
+  s0 --&gt; s1: an hour passes
+  s1 --&gt; s1: an hour passes
+  s1 --&gt; s2: an hour passes
+  s2 --&gt; s3: an hour passes
+  s3 --&gt; s3: a rush starts
+  s3 --&gt; s4: thrown out
+  s3 --&gt; s5: a cup is served [in a rush]
+  s4 --&gt; s0: a new batch is boiled
+  classDef breaks fill:#ffecee,stroke:#e72e3b,stroke-width:2.5px,color:#cd2834
+  class s0 bugPath
+  class s1 bugPath
+  class s2 bugPath
+  class s3 bugPath
+  class s5 breaks
+  class s5 bugPath</code></pre><figcaption>3. The chart /statechart wrote, with a line of layout for pele</figcaption></figure>
+      <figure><div class="pele"><svg aria-label="pele's plain layout of The pearl bug" xmlns="http://www.w3.org/2000/svg" class="pele pele-state" viewBox="0 0 823 694" width="823" height="694" style="--_bg:var(--pele-bg,#fff);--_fg:var(--pele-fg,#1f1f1f);--_m:var(--pele-muted,#6e6e6e);--_l:var(--pele-line,#1f1f1f);--_s:var(--pele-surface,#f3f3f3);--_a:var(--pele-surface-alt,#e6e6e6);--_b:var(--pele-border,#8a8a8a);--_c:var(--pele-accent,#5b7bd5);color:var(--_fg);--_tw:var(--pele-title-weight,bold);--_fm:var(--pele-font-mono,monospace);font:16px sans-serif;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;font-family:var(--pele-font,Kevin Sans)" fill="var(--_fg)" role="img" aria-roledescription="state"><text class="pele-title" font-weight="var(--_tw)" text-anchor="middle" xml:space="preserve"><tspan x="411.5" y="29.6">the pearl bug</tspan></text><g transform="translate(0,36)"><g class="pele-clusters"><g class="pele-cluster pele-state-composite" data-id="legend"><rect x="279.62" y="12" width="531.01" height="151" rx="10" fill="var(--_a)" fill-opacity="0.5" stroke="var(--_b)"/><path d="M279.62,48H810.63" fill="none" stroke="var(--_b)"/><text class="pele-cluster-label" x="545.13" y="35.6" text-anchor="middle">Legend</text></g></g><g class="pele-edges" fill="none" stroke="var(--_l)" stroke-linecap="round"><g class="pele-edge pele-transition" data-id="edge0"><path d="M232.62,163L232.62,182"/><path class="pele-marker" d="M232.62,189L229.26,181L235.98,181Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge1"><path d="M249.69,233L249.69,237.16C249.69,238.49 354.75,241.16 354.75,242.5L354.75,277"/><path class="pele-marker" d="M354.75,284L351.39,276L358.11,276Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge2"><path d="M399.61,298C425.61,290 425.61,322 406.3,316.06"/><path class="pele-marker" d="M399.61,314L408.24,313.14L406.27,319.56Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge3"><path d="M354.75,328L354.75,372"/><path class="pele-marker" d="M354.75,379L351.39,371L358.11,371Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge4"><path d="M354.75,423L354.75,467"/><path class="pele-marker" d="M354.75,474L351.39,466L358.11,466Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge5"><path d="M405.56,488C431.56,480 431.56,512 412.25,506.06"/><path class="pele-marker" d="M405.56,504L414.2,503.14L412.22,509.56Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge6"><path d="M346.75,518C346.75,522.75 271.78,522.75 271.78,527.5L271.78,567.5C271.78,569.38 163.83,572.74 163.83,574.63L163.83,577"/><path class="pele-marker" d="M163.83,584L160.47,576L167.19,576Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge7"><path d="M362.75,518C362.75,522.75 437.73,522.75 437.73,527.5L437.73,577"/><path class="pele-marker" d="M437.73,584L434.37,576L441.09,576Z" fill="var(--_l)" stroke="none"/></g><g class="pele-edge pele-transition" data-id="edge8"><path d="M110.49,584L110.49,284C110.49,265 215.56,265 215.56,246L215.56,240"/><path class="pele-marker" d="M215.56,233L218.92,241L212.2,241Z" fill="var(--_l)" stroke="none"/></g></g><g class="pele-edge-labels" font-size="14"><g class="pele-edge-label" data-id="edge1"><rect x="284.05" y="244.5" width="141.41" height="21" rx="3" fill="var(--_bg)"/><text x="354.75" y="259.9" text-anchor="middle">an hour passes</text></g><g class="pele-edge-label" data-id="edge2"><rect x="431.61" y="295.5" width="141.41" height="21" rx="3" fill="var(--_bg)"/><text x="502.31" y="310.9" text-anchor="middle">an hour passes</text></g><g class="pele-edge-label" data-id="edge3"><rect x="284.05" y="339.5" width="141.41" height="21" rx="3" fill="var(--_bg)"/><text x="354.75" y="354.9" text-anchor="middle">an hour passes</text></g><g class="pele-edge-label" data-id="edge4"><rect x="284.05" y="434.5" width="141.41" height="21" rx="3" fill="var(--_bg)"/><text x="354.75" y="449.9" text-anchor="middle">an hour passes</text></g><g class="pele-edge-label" data-id="edge5"><rect x="437.56" y="485.5" width="124.77" height="21" rx="3" fill="var(--_bg)"/><text x="499.95" y="500.9" text-anchor="middle">a rush starts</text></g><g class="pele-edge-label" data-id="edge6"><rect x="219.09" y="537" width="105.37" height="21" rx="3" fill="var(--_bg)"/><text x="271.78" y="552.4" text-anchor="middle">thrown out</text></g><g class="pele-edge-label" data-id="edge7"><rect x="344.46" y="529.5" width="186.53" height="36" rx="3" fill="var(--_bg)"/><text text-anchor="middle" xml:space="preserve"><tspan x="437.73" y="543.4">a cup is served [in a</tspan><tspan x="437.73" y="561.4">rush]</tspan></text></g><g class="pele-edge-label" data-id="edge8"><rect x="14" y="390.5" width="192.98" height="21" rx="3" fill="var(--_bg)"/><text x="110.49" y="405.9" text-anchor="middle">a new batch is boiled</text></g></g><g class="pele-nodes"><g class="pele-node pele-state bugPath" data-id="s0" transform="translate(232.62,211)"><rect x="-69.06" y="-22" width="138.13" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">just boiled</text></g><g class="pele-node pele-state bugPath" data-id="s1" transform="translate(354.75,306)"><rect x="-44.86" y="-22" width="89.71" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">chewy</text></g><g class="pele-node pele-state bugPath" data-id="s2" transform="translate(354.75,401)"><rect x="-76.91" y="-22" width="153.82" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">getting firm</text></g><g class="pele-node pele-state bugPath" data-id="s3" transform="translate(354.75,496)"><rect x="-50.81" y="-22" width="101.62" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">too old</text></g><g class="pele-node pele-state" data-id="s4" transform="translate(144.19,606)"><rect x="-71.64" y="-22" width="143.28" height="44" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" x="0" y="5.6" text-anchor="middle">thrown out</text></g><g class="pele-node pele-state breaks bugPath" data-id="s5" transform="translate(437.73,615)"><rect x="-81.22" y="-31" width="162.45" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" style="fill:#ffecee;stroke:#e72e3b;stroke-width:2.5px;"/><text class="pele-label" style="fill:#cd2834;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">an old cup is</tspan><tspan x="0" y="16.1">served</tspan></text></g><g class="pele-node pele-state-start" data-id="root_start" transform="translate(232.62,156)"><circle r="7" fill="var(--_l)"/></g><g class="pele-node pele-state breaks" data-id="lg0" transform="translate(410.37,105.5)"><rect x="-114.75" y="-31" width="229.5" height="62" rx="10" fill="var(--_s)" stroke="var(--_b)" style="fill:#ffecee;stroke:#e72e3b;stroke-width:2.5px;"/><text class="pele-label" style="fill:#cd2834;" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-4.9">Breaks</tspan><tspan x="0" y="16.1">NeverServeOldPearls</tspan></text></g><g class="pele-node pele-state bugPath" data-id="lg1" transform="translate(679.88,105.5)"><rect x="-114.75" y="-41.5" width="229.5" height="83" rx="10" fill="var(--_s)" stroke="var(--_b)"/><text class="pele-label" text-anchor="middle" xml:space="preserve"><tspan x="0" y="-15.4">Path to the</tspan><tspan x="0" y="5.6">NeverServeOldPearls</tspan><tspan x="0" y="26.6">bug</tspan></text></g></g></g></svg></div><figcaption>4. pele's plain layout, which the drawing follows</figcaption></figure>
+    </div>
+  </article>
+</section>
+
+<footer class="foot">
+  <p>The models are checked with <a href="https://github.com/tlaplus/tlaplus">TLC</a> (MIT). The charts are laid out by <a href="https://pele.run">pele</a> (MIT). The letters are Kevin Serif and Kevin Sans, traced from A. V. Hershey's 1967 fonts (public domain). The code, the models and the drawings are <a href="https://github.com/kevintngo/statechart-art">on GitHub</a>.</p>
+</footer>
+</main>
+</body>
+</html>

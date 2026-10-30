@@ -1,0 +1,7 @@
+{
+  "name": "statechart-art-tools",
+  "private": true,
+  "description": "Draws statecharts as dry-media plates: pele lays the chart out, the oav kit draws it in pencil and pastel.",
+  "type": "commonjs",
+  "dependencies": { "@napi-rs/canvas": "1.0.13", "pele": "1.9.0" }
+}
