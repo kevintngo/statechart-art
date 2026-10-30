@@ -18,7 +18,8 @@ Each plate is a square, sized to read on a phone. The images for x.com are in `d
 ## How they are made
 
 1. **Model.** A TLA+ spec says what can happen in the shop, and its config lists the rules that must hold.
-2. **Chart.** The /statechart skill checks the spec with TLC. It writes the chart in Mermaid, in the words that
+2. **Chart.** The /statechart skill checks the spec with TLC, the TLA+ model checker: it takes every step from every
+   state the model can reach and checks each rule in each one. It writes the chart in Mermaid, in the words that
    `view.mjs` gives each state and step, and a report of the rules that hold and the rules that break.
 3. **Lay out.** pele lays the chart out and measures every word in Kevin Serif Bold. `layout.mmd` is the chart with
    pele's spacing and direction added.

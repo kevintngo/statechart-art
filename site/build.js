@@ -163,7 +163,7 @@ async function main() {
 <header class="top">
   <p class="kicker">statechart art</p>
   <h1>The business of boba</h1>
-  <p class="lede">Four statecharts about running a boba shop, one for each kind of chart <code>/statechart</code> makes: a flat chart, a parent state, two regions at the same time, and a rule that breaks. Each one is a small TLA+ model checked by TLC, laid out by pele, and drawn by hand in pen and coloured pencil, by code.</p>
+  <p class="lede">Four statecharts about running a boba shop, one for each kind of chart <code>/statechart</code> makes: a flat chart, a parent state, two regions at the same time, and a rule that breaks. Each one is a small TLA+ model checked by <a href="#tlc">TLC</a>, laid out by pele, and drawn by hand in pen and coloured pencil, by code.</p>
   <p class="repo">The code, the models and the drawings are on GitHub: <a href="${REPO}">${esc(REPO.replace(/^https?:\/\/(www\.)?github\.com\//, ''))}</a></p>
 </header>
 
@@ -173,9 +173,14 @@ ${plates.join('\n')}
 
 <section class="how" aria-labelledby="how">
   <h2 id="how">How they were made</h2>
+  <div class="tlc" id="tlc">
+    <h3>What TLC is</h3>
+    <p>Each chart starts as a model in TLA+, a language for saying how something works one step at a time: where it starts, and which steps can come next. <a href="https://github.com/tlaplus/tlaplus">TLC</a> is the program that checks a TLA+ model.</p>
+    <p>A test tries a few cases. TLC tries all of them. From the first state it takes every step that can happen, then every step after those, until it has seen every state the model can reach. In each state it checks the rules, such as \"every drink being made has been paid for\". If a rule can break, TLC finds the shortest list of steps that breaks it. That's the red path on the pearl bug: in a rush, nobody checks how old the pearls are.</p>
+  </div>
   <ol class="steps">
     <li><b>Model it.</b> A few lines of TLA+ say what can happen in the shop, and which rules must always hold.</li>
-    <li><b>Check it.</b> <code>/statechart</code> runs TLC over every state the model can reach and checks each rule in each one. When a rule breaks, it finds the shortest path to the break.</li>
+    <li><b>Check it.</b> <code>/statechart</code> runs <a href="#tlc">TLC</a> over every state the model can reach and checks each rule in each one. When a rule breaks, it finds the shortest path to the break.</li>
     <li><b>Choose the words.</b> A view says what the reader sees in each state and each step. It picks the kind of chart too: a word for a flat chart, a list for parent states, an object for regions.</li>
     <li><b>Lay it out.</b> pele lays out the Mermaid chart, measuring every word in the letters the drawing uses.</li>
     <li><b>Draw it.</b> A program draws pele's boxes and lines as things from a boba shop, tickets, signs, notes and cards, in a simulated pen and coloured pencils, and fills the space around them with the shop. Words sit on clean paper, and arrows stop short of what they point at. The last picture for each plate below puts pele's boxes and lines, in blue, over the finished drawing.</li>
