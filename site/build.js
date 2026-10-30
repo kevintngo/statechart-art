@@ -166,7 +166,7 @@ ${made.join('\n')}
 </section>
 
 <footer class="foot">
-  <p>The models are checked with <a href="https://github.com/tlaplus/tlaplus">TLC</a> (MIT). The charts are laid out by <a href="https://pele.run">pele</a> (MIT). The letters are Kevin Serif and Kevin Sans, traced from A. V. Hershey's 1967 fonts (public domain). The code, the models and the drawings are <a href="${REPO}">on GitHub</a>.</p>
+  <p>The models are checked with <a href="https://github.com/tlaplus/tlaplus">TLC</a> (MIT). The charts are laid out by <a href="https://pele.run">pele</a> (MIT). The letters are Kevin Serif and Kevin Sans, traced from A. V. Hershey's 1967 fonts (public domain). The code, the models and the drawings are <a href="${REPO}">on GitHub</a>, under the <a href="${REPO}/blob/main/LICENSE">MIT license</a>.</p>
 </footer>
 </main>
 </body>

@@ -88,3 +88,7 @@ and keep the `config` and `direction` lines.
 The models are checked by [TLC](https://github.com/tlaplus/tlaplus) (MIT). The charts are laid out by
 [pele](https://pele.run) (MIT) and drawn with [@napi-rs/canvas](https://github.com/Brooooooklyn/canvas) (MIT). The
 letters are Kevin Serif and Kevin Sans, A. V. Hershey's 1967 letters (public domain) written by a simulated pen.
+
+## License
+
+MIT, for everything here: the code, the models, the drawings and the fonts. See [LICENSE](LICENSE).
