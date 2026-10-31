@@ -18,6 +18,7 @@ const ARG = (k, d) => { const a = process.argv.find((s) => s.startsWith('--' + k
 const PAL = {
   ink: '#1d1a1e', gold: '#e2b33f', goldPale: '#f6ecd2', red: '#c4453a', redPale: '#ef9a8c', cream: '#efe6d2',
   navy: '#26304f', plum: '#3a2f45', rust: '#7a3b2c', linen: '#e9dfcc',
+  oldGold: '#674709', oldGoldPale: '#9a6d22', brick: '#7f2820', brickPale: '#9c3a2c', slate: '#4a5160', slatePale: '#6a717e', knotRed: '#e2584a',
 };
 
 const probe = createCanvas(8, 8).getContext('2d');
@@ -61,15 +62,15 @@ const BUG = new Set(['s0', 's2', 's3', 's5', 's6', 's9', 's11', 's13', 's14', 's
 const REGIONS = [['booster', 'The booster'], ['ship', 'The ship'], ['tower', 'The tower']];
 
 const ARROWS = [
-  ['s0', 's1', ['a hold', 'is called'], 'cream'],
+  ['s0', 's1', ['a hold', 'is called'], 'grey'],
   ['s0', 's2', ['the count', 'reaches zero'], 'gold'],
-  ['s1', 's0', ['the count', 'resumes'], 'cream'],
-  ['s1', 's4', ['the launch', 'is scrubbed'], 'cream'],
+  ['s1', 's0', ['the count', 'resumes'], 'grey'],
+  ['s1', 's4', ['the launch', 'is scrubbed'], 'grey'],
   ['s2', 's3', ['the air presses', 'hardest'], 'gold'],
   ['s3', 's5', ['most of the', 'booster’s engines', 'cut off'], 'gold'],
   ['s5', 's6', ['the ship', 'pulls away'], 'gold'],
   ['s6', 's7', ['every check passes:', 'go for catch'], 'gold'],
-  ['s6', 's8', ['a check', 'fails: no-go'], 'cream'],
+  ['s6', 's8', ['a check', 'fails: no-go'], 'grey'],
   ['s6', 's9', ['a check fails,', 'it comes in anyway', '[no go/no-go poll]'], 'red'],
   ['s7', 's10', ['the landing', 'burn starts'], 'gold'],
   ['s9', 's11', ['it hits the tower', '[when the arms', 'are closing]'], 'red'],
@@ -215,13 +216,13 @@ async function wire(L, R, LB) {
   g.fillStyle = '#d9cdb3'; g.fillRect(0, 0, L.W, L.H);
   g.strokeStyle = PAL.ink; g.lineWidth = 2; g.strokeRect(L.F.x0, L.F.y0, L.F.x1 - L.F.x0, L.F.y1 - L.F.y0);
   g.setLineDash([12, 9]); for (const x of L.seps) { g.beginPath(); g.moveTo(x, L.F.y0 + 14); g.lineTo(x, L.F.y1 - 14); g.stroke(); } g.setLineDash([]);
-  const fill = { path: PAL.navy, side: PAL.linen, breaks: PAL.rust }, edge = { path: PAL.gold, side: PAL.cream, breaks: PAL.red };
+  const fill = { path: PAL.navy, side: PAL.linen, breaks: PAL.rust }, edge = { path: PAL.gold, side: PAL.slate, breaks: PAL.red };
   for (const s of STATES) {
     const b = L.P[s.id]; g.fillStyle = fill[s.kind]; g.fillRect(b.x0, b.y0, b.w, b.h); g.strokeStyle = edge[s.kind]; g.lineWidth = 9; g.strokeRect(b.x0 + 4.5, b.y0 + 4.5, b.w - 9, b.h - 9);
     g.fillStyle = s.kind === 'side' ? PAL.ink : PAL.cream; g.font = `${SZ.state}px "${FACE}"`; g.textAlign = 'center';
     const n = s.lines.length; s.lines.forEach((t, i) => g.fillText(t, b.cx, b.cy + (i - (n - 1) / 2) * SZ.state * LP + SZ.state * 0.36));
   }
-  const tc = { gold: PAL.gold, red: PAL.red, cream: '#f8f2e4' };
+  const tc = { gold: PAL.oldGold, red: PAL.brick, grey: PAL.slate };
   for (const a of ARROWS) {
     const pts = smoothPath(R[a.from + '>' + a.to]); g.strokeStyle = tc[a.thread]; g.lineWidth = 4; g.setLineDash([13, 7]);
     g.beginPath(); pts.forEach((p, i) => (i ? g.lineTo(...p) : g.moveTo(...p))); g.stroke(); g.setLineDash([]);
@@ -258,9 +259,13 @@ const TH = {
   red: { col: lin(PAL.red), pale: lin(PAL.redPale), plies: 6, spec: 0.28 },
   cream: { col: lin(PAL.cream), pale: null, plies: 3, spec: 0.22 },
   ink: { col: lin(PAL.ink), pale: lin('#3a343c'), plies: 5, spec: 0.22 },
+  oldGold: { col: lin(PAL.oldGold), pale: lin(PAL.oldGoldPale), plies: 6, spec: 0.3 },
+  brick: { col: lin(PAL.brick), pale: lin(PAL.brickPale), plies: 6, spec: 0.26 },
+  slate: { col: lin(PAL.slate), pale: lin(PAL.slatePale), plies: 4, spec: 0.2 },
+  knot: { col: lin(PAL.knotRed), pale: lin(PAL.redPale), plies: 6, spec: 0.28 },
 };
 
-const RTH = { gold: { ...TH.gold, plies: 7 }, red: { ...TH.red, plies: 7 }, cream: TH.cream, ink: TH.ink };
+const RTH = { gold: { ...TH.oldGold, plies: 7 }, red: { ...TH.brick, plies: 7 }, grey: TH.slate, ink: TH.ink };
 const RUN = { w: 5.0, dash: 18, gap: 5.5, head: true, headLen: 18, flat: 0.5, taper: 0.74 };
 
 function cloth(w, h) { const n = w * h; return { w, h, H: new Float32Array(n), R: new Float32Array(n), G: new Float32Array(n), B: new Float32Array(n), S: new Float32Array(n) }; }
@@ -699,12 +704,12 @@ async function render(L, R, LB) {
   const linenC = lin(PAL.linen);
   weave(C, { pitch: 4.7 * K, thick: 0.74 * K, arc: 0.44 * K, color: mixc(linenC, lin('#c6ae88'), 0.62), seed: 'ground' });
   log('linen');
-  cordFrame(C, 24, 24, Wf - 24, Hf - 24, 20, { w: 6.4, th: { ...TH.gold, plies: 3 }, tack: 23, tw: 1.7, tackTh: TH.ink });
+  cordFrame(C, 24, 24, Wf - 24, Hf - 24, 20, { w: 6.4, th: { ...TH.oldGold, plies: 3 }, tack: 23, tw: 1.7, tackTh: TH.ink });
   log('cord');
   const FB = 1.35 * K, OV = 4.3;
   const looks = {
     path: { kind: 'felt', color: lin(PAL.navy), thick: 5.4 * K, edge: TH.gold, text: TH.cream },
-    side: { kind: 'linen', color: linenC, thick: 1.5 * K, edge: TH.cream, text: TH.ink },
+    side: { kind: 'linen', color: linenC, thick: 1.5 * K, edge: TH.slate, text: TH.ink },
     breaks: { kind: 'felt', color: lin(PAL.rust), thick: 5.4 * K, edge: TH.red, text: TH.cream },
   };
   for (const s of STATES) {
@@ -716,7 +721,7 @@ async function render(L, R, LB) {
     const n = s.lines.length, all = [];
     s.lines.forEach((t, i) => { const w = textW(t, SZ.state), bl = b.cy + (i - (n - 1) / 2) * SZ.state * LP + SZ.state * 0.36; all.push(...letterStitches(t, SZ.state, b.cx - w / 2, bl, { th: lk.text })); });
     sew(C, all);
-    if (BUG.has(s.id)) knot(C, b.x0 + 10.5, b.y0 + 10.5, 4.6, TH.red, 'bug' + s.id);
+    if (BUG.has(s.id)) knot(C, b.x0 + 10.5, b.y0 + 10.5, 4.6, TH.knot, 'bug' + s.id);
   }
   log('patches');
   const F = L.F, fr = 14, frameLabel = 'At the same time', flx = F.x0 + 40, flw = textW(frameLabel, SZ.frame);
@@ -728,7 +733,7 @@ async function render(L, R, LB) {
   for (const [r, name] of REGIONS) { const w = textW(name, SZ.region); stitchText(C, name, SZ.region, (L.col[r][0] + L.col[r][1]) / 2 - w / 2, F.y0 + 62, { th: TH.ink, style: 'satin', sp: 1.5, tw: 1.8, slant: 0.32, hump: 0.5 }); }
   for (const [first, x] of [['s0', L.X.b], ['s13', L.X.ship], ['s19', L.X.tower]]) {
     const ky = F.y0 + 104;
-    knot(C, x, ky, 7.6, TH.gold, 'start' + first);
+    knot(C, x, ky, 7.6, TH.oldGold, 'start' + first);
     running(C, [[x, ky + 12], [x, L.P[first].y0 - 13]], { ...RUN, th: RTH.gold, seed: 'start' + first, wob: 0 });
   }
   log('frame');
@@ -737,7 +742,7 @@ async function render(L, R, LB) {
   for (const [k, b] of Object.entries(LB)) stitchLines(C, b.lines, SZ.label, b, b.align, { th: TH.ink });
   log('labels');
   const tw = textW('Catch', SZ.title);
-  stitchText(C, 'Catch', SZ.title, W / 2 - tw / 2, 176, { th: TH.gold, style: 'satin', sp: 2.4, tw: 2.8, slant: 0.5, hump: 1.6, over: 0.35 });
+  stitchText(C, 'Catch', SZ.title, W / 2 - tw / 2, 176, { th: TH.oldGold, style: 'satin', sp: 2.4, tw: 2.8, slant: 0.5, hump: 1.6, over: 0.35 });
   const sub = 'Starship’s booster flies home and is caught by its tower', sw = textW(sub, SZ.sub);
   stitchText(C, sub, SZ.sub, W / 2 - sw / 2, 226, { th: TH.ink });
   legend(C, L);
@@ -753,11 +758,11 @@ function legend(C, L) {
   const item = (y, draw, text, gap = 44) => { const w = draw(x, y); stitchText(C, text, sz, x + w + 12, y + sz * 0.34, { th: TH.ink }); x += w + 12 + textW(text, sz) + gap; };
   const arrowS = (th) => (xx, y) => { running(C, [[xx, y], [xx + 64, y]], { ...RUN, th, seed: 'leg' + xx + y, wob: 0 }); return 64; };
   item(y1, arrowS(RTH.gold), 'the flight that works');
-  item(y1, arrowS(RTH.cream), 'other steps');
-  item(y1, (xx, y) => { knot(C, xx + 8, y, 7.6, TH.gold, 'legstart'); return 16; }, 'start');
+  item(y1, arrowS(RTH.grey), 'other steps');
+  item(y1, (xx, y) => { knot(C, xx + 8, y, 7.6, TH.oldGold, 'legstart'); return 16; }, 'start');
   x = x0;
   item(y2, arrowS(RTH.red), 'where TLC’s path goes wrong when the go/no-go poll is skipped');
-  item(y2, (xx, y) => { knot(C, xx + 5, y, 4.6, TH.red, 'legbug'); return 10; }, 'a state on that path');
+  item(y2, (xx, y) => { knot(C, xx + 5, y, 4.6, TH.brick, 'legbug'); return 10; }, 'a state on that path');
   item(y2, (xx, y) => {
     const b = { cx: xx + 22, cy: y, w: 44, h: 30 }, fb = feltBox(b, OV2), wob = wobbler('legend', 0.4 * K);
     fb.r = 7 * K;
