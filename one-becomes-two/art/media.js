@@ -13,7 +13,7 @@ const INK = '#1d1a1e';
 
 function sheet(o) {
   const S = K.sheet({ id: o.id, w: o.w, h: o.h, ppm: o.ppm, paper: o.paper, seed: o.seed || o.id });
-  const R = rng('media:' + (o.seed || o.id));
+  const R = rng('media:' + (o.inkSeed || o.seed || o.id));
   const oy = o.top || 0, ox = o.left || 0;
   const tx = (p) => [p[0] - ox, p[1] - oy];
   const tp = (pts) => pts.map(tx);

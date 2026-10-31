@@ -97,8 +97,8 @@ async function main() {
     console.log(`${path.basename(file)} ${Math.round(s.h)} mm in ${((Date.now() - t0) / 1000).toFixed(1)} s`);
   }
   const prior = fs.existsSync(path.join(OUT, 'sheets.json')) ? JSON.parse(fs.readFileSync(path.join(OUT, 'sheets.json'), 'utf8')) : null;
-  const creditsOf = (i) => looks[i].credits || (prior && prior.sheets[i] && prior.sheets[i].id === looks[i].id && prior.sheets[i].credits) || [];
-  fs.writeFileSync(path.join(OUT, 'sheets.json'), JSON.stringify({ W: wall.W, total: wall.total, ppm: PPM, sheets: sheets.map((s, i) => ({ ...s, id: looks[i].id, file: path.basename(files[i]), alt: looks[i].alt || '', credits: creditsOf(i) })) }, null, 1));
+  const kept = (i, k, d) => looks[i][k] || (prior && prior.sheets[i] && prior.sheets[i].id === looks[i].id && prior.sheets[i][k]) || d;
+  fs.writeFileSync(path.join(OUT, 'sheets.json'), JSON.stringify({ W: wall.W, total: wall.total, ppm: PPM, sheets: sheets.map((s, i) => ({ ...s, id: looks[i].id, file: path.basename(files[i]), alt: looks[i].alt || '', credits: kept(i, 'credits', []), step: kept(i, 'step', null) })) }, null, 1));
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

@@ -98,7 +98,13 @@ function titleFront(P, s, wall) {
     if (th === Mk.PLAIN) Mk.thread(P, pts, th); else Mk.cord(P, pts, th);
     P.text(t, 37, y + 1.6, { size: 4.3, color: ink2 });
   });
-  return credits;
+  const words = ['Step through', 'the chart'], ts = 4.4, tw = Math.max(...words.map((w) => M.measure(w, ts))), tag = { x: 172 - (tw + 17), y: 103, w: tw + 17, h: 16, lines: [], key: 'step' };
+  Mk.tag(P, tag, TAG_LIGHT);
+  const cy = tag.y + tag.h / 2, tri = [[tag.x + 5, cy - 2.7], [tag.x + 5, cy + 2.7], [tag.x + 9.8, cy]];
+  P.fill([tri], '#e2b33f', { tool: 'pencil', pressure: 1, passes: 3 });
+  P.outline([tri], { color: '#3a2a14', nib: 0.3 });
+  words.forEach((w, i) => P.text(w, tag.x + 12.5, cy - 0.6 + i * 5.6 - 1.9, { size: ts, color: INK }));
+  return { credits, step: { x: tag.x, y: tag.y, w: tag.w, h: tag.h } };
 }
 
 const G1PAL = { cyto: '#f6e2c6', shade: '#e8c4a0', ribo: '#b98c6a', mito: '#d9727a', mitoLine: '#7a2f36', line: '#4a3b33', er: '#c99a3a', vesicle: '#a9cfe0', nucleus: '#c6b6de', nucleusLight: '#e0d6ee', chromatin: '#6b4a7a', nucleolus: '#4a2f55', envelope: '#3d2f45', tool: 'pencil' };
@@ -391,7 +397,7 @@ function looks(wall, sheets) {
     look('colophon', 'navy', true, { alt: 'What TLC checked, beside a ring showing one cycle: G1, S, G2 and M.' }),
   ];
   L[0].back = (P, s) => title(P, s, wall);
-  L[0].front = (P, s) => { L[0].credits = titleFront(P, s, wall); };
+  L[0].front = (P, s) => { const r = titleFront(P, s, wall); L[0].credits = r.credits; L[0].step = r.step; };
   L[1].back = (P, s) => growing(P, s, captioner(P, s, wall));
   L[1].front = (P, s) => header(P, s.top + 18, 'Getting ready', '(interphase)', { size: 9 });
   L[2].back = (P, s) => firstCheck(P, s, captioner(P, s, wall));

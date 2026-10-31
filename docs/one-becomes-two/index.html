@@ -43,6 +43,61 @@ body { margin: 0; }
 .credits a:focus-visible { outline: 2px solid #933323; outline-offset: 2px; background: rgba(196, 69, 58, 0.08); }
 .credits ::selection { color: transparent; background: rgba(226, 179, 63, 0.4); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wall { position: relative; }
+.step-open { position: absolute; margin: 0; padding: 0; border: 0; border-radius: 3px; background: transparent; color: transparent; font: inherit; font-size: 1px; cursor: pointer; }
+.step-open:hover { background: rgba(226, 179, 63, 0.14); }
+.step-open:focus-visible { outline: 2px solid #933323; outline-offset: 3px; }
+.step-marks { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.step-marks[hidden] { display: none; }
+.step-marks svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.step-spot { position: absolute; border-radius: 10px; box-shadow: 0 0 0 3px rgba(240, 200, 106, 0.95), 0 0 22px 8px rgba(240, 200, 106, 0.4), 0 0 0 300vmax rgba(14, 11, 9, 0.34); transition-property: left, top, width, height, border-radius; transition-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+.step-spot.round { border-radius: 50%; }
+.step-route { fill: none; stroke: #f6d27a; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.7s; }
+.step-token { filter: drop-shadow(0 0 3px rgba(246, 210, 122, 0.95)); }
+.step-token circle { fill: #f3d58c; stroke: #3a2a14; stroke-width: 0.5; }
+.step-token .nuc { fill: #c4453a; stroke: none; }
+.stepper { position: fixed; z-index: 20; background: #1d1917; color: #efe6d6; box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45); }
+.stepper[hidden] { display: none; }
+.scope { position: relative; aspect-ratio: 1; border-radius: 50%; background: #f5f1e7; box-shadow: 0 0 0 6px #0c0a09, 0 0 0 7px #4a413a; overflow: hidden; }
+.scope canvas { display: block; width: 100%; height: 100%; }
+.scope::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, transparent 60%, rgba(70, 50, 25, 0.16) 82%, rgba(30, 20, 10, 0.42) 100%); pointer-events: none; }
+.step-chapter { margin: 0; font-size: 0.85rem; color: #c9bfae; }
+.step-now { font-weight: 700; font-size: 1.3rem; line-height: 1.25; margin: 2px 0 4px; }
+.step-now:focus { outline: none; }
+.step-cell-note { margin: 0; font-size: 0.85rem; color: #f0c86a; }
+.step-ask { margin: 12px 0 8px; color: #d8cfc0; }
+.step-moves { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.move { display: grid; grid-template-columns: 24px 1fr; column-gap: 10px; align-items: center; width: 100%; text-align: left; font: inherit; font-size: 1rem; line-height: 1.3; color: #1d1a1e; background: #fbf6ea; border: 1px solid #6f655a; border-radius: 2px; box-shadow: 2px 3px 0 #0b0a0b; padding: 9px 12px; cursor: pointer; }
+.move .swatch { grid-row: span 2; width: 24px; height: 6px; border-radius: 3px; background: #efe6d2; box-shadow: 0 0 0 1px #2e2a26; }
+.move.gold .swatch { background: repeating-linear-gradient(90deg, #e2b33f 0 4px, #f6ecd2 4px 7px); box-shadow: 0 0 0 1px #3a2a14; }
+.move.red .swatch { background: repeating-linear-gradient(90deg, #c4453a 0 4px, #ef9a8c 4px 7px); box-shadow: 0 0 0 1px #3d1410; }
+.move.red .what { color: #8f2a20; }
+.move .to { font-size: 0.85rem; color: #5b5046; }
+.move:hover { background: #fffaf0; }
+.move:active { transform: translate(1px, 2px); box-shadow: 1px 1px 0 #0b0a0b; }
+.move:focus-visible, .step-controls button:focus-visible { outline: 2px solid #f0c86a; outline-offset: 3px; }
+.step-hint { font-size: 0.8rem; color: #b3a99a; margin: 10px 0 0; }
+.step-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.step-controls button { font: inherit; font-size: 0.9rem; color: #efe6d6; background: transparent; border: 1px solid #5a5048; border-radius: 2px; padding: 6px 12px; min-height: 36px; cursor: pointer; }
+.step-controls button:disabled { opacity: 0.45; cursor: default; }
+.step-controls button:hover:not(:disabled) { border-color: #f0c86a; }
+.step-trail-box { margin-top: 16px; font-size: 0.85rem; color: #c9bfae; }
+.step-trail-box summary { cursor: pointer; padding: 4px 0; }
+.step-trail { margin: 6px 0 0; padding-left: 1.4em; }
+.step-trail li[aria-current] { color: #f0c86a; }
+@media (min-width: 900px) {
+  .stepper { top: 0; right: 0; bottom: 0; width: 360px; overflow-y: auto; padding: 28px 24px 32px; border-left: 1px solid #2c2622; }
+  .scope { width: 240px; margin: 6px auto 20px; }
+  body.stepping main { margin-right: 360px; }
+}
+@media (max-width: 899px) {
+  .stepper { left: 0; right: 0; bottom: 0; max-height: 52vh; overflow-y: auto; padding: 14px 16px 18px; border-top: 1px solid #2c2622; display: grid; grid-template-columns: 104px 1fr; column-gap: 14px; align-items: center; }
+  .scope { width: 104px; margin: 6px 0; }
+  .step-now { font-size: 1.1rem; }
+  .step-body, .step-controls, .step-trail-box { grid-column: 1 / -1; }
+  body.stepping main { padding-bottom: 54vh; }
+}
+@media (prefers-reduced-motion: reduce) { .step-spot, .step-route { transition: none; } }
 .text { max-width: 44rem; margin: 56px auto 80px; padding: 0 20px 0 36px; }
 .text h2 { display: inline; font-weight: 700; font-size: 1.35rem; margin: 0; }
 .text summary { cursor: pointer; padding: 10px 0; list-style-position: outside; }
@@ -72,6 +127,7 @@ a:focus-visible { outline: 2px solid #f0c86a; outline-offset: 3px; }
 <li style="left:5.833%;top:28.969%;font-size:2.2222cqw">Lettering in Kevin Sans, traced from A. V. Hershey’s 1967 fonts.</li>
 <li style="left:5.833%;top:31.391%;font-size:2.2222cqw">The code and drawings are on <a href="https://github.com/kevintngo/statechart-art">GitHub</a>, under the <a href="https://github.com/kevintngo/statechart-art/blob/main/LICENSE">MIT license</a>.</li>
 </ul>
+<button type="button" class="step-open" id="step-open" aria-expanded="false" aria-controls="stepper" style="left:67.240%;top:40.234%;width:28.316%;height:6.250%">Step through the chart</button>
 </div>
 <img src="tiles/01-growing-1080.webp" srcset="tiles/01-growing-1080.webp 1080w, tiles/01-growing-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1518" alt="Getting ready (interphase). A large cell with its nucleus, mitochondria and folds of membrane; sugar molecules drift toward it." fetchpriority="high" decoding="async">
 <img src="tiles/02-first-check-1080.webp" srcset="tiles/02-first-check-1080.webp 1080w, tiles/02-first-check-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On brown paper, a long DNA double helix. On the left, rays of sunlight break it; on the right, the protein p53 clamps onto it and holds the cell still." loading="lazy" decoding="async">
@@ -88,6 +144,10 @@ a:focus-visible { outline: 2px solid #f0c86a; outline-offset: 3px; }
 <img src="tiles/13-cytokinesis-1080.webp" srcset="tiles/13-cytokinesis-1080.webp 1080w, tiles/13-cytokinesis-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="Two daughter cells, each with its own nucleus and mitochondria, still joined by a thin bridge tied with a red ring." loading="lazy" decoding="async">
 <img src="tiles/14-endings-1080.webp" srcset="tiles/14-endings-1080.webp 1080w, tiles/14-endings-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1686" alt="Three pairs of daughter cells. Left: one has an extra chromosome and one is short. Middle: each has one of everything. Right: both carry a red mark, the copied damage. Each daughter begins again at the top." loading="lazy" decoding="async">
 <img src="tiles/15-colophon-1080.webp" srcset="tiles/15-colophon-1080.webp 1080w, tiles/15-colophon-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1250" alt="What TLC checked, beside a ring showing one cycle: G1, S, G2 and M." loading="lazy" decoding="async">
+<div class="step-marks" id="step-marks" hidden aria-hidden="true">
+<div class="step-spot" id="step-spot"></div>
+<svg viewBox="0 0 180 1654.58" preserveAspectRatio="none"><path class="step-route" id="step-route"/><g class="step-token" id="step-token"><circle r="2.6"/><circle class="nuc" r="1.05"/></g></svg>
+</div>
 </div>
 <section class="text">
 <details>
@@ -165,5 +225,27 @@ a:focus-visible { outline: 2px solid #f0c86a; outline-offset: 3px; }
 </details>
 </section>
 </main>
+<aside class="stepper" id="stepper" aria-labelledby="step-now" hidden>
+<div class="scope"><canvas id="step-cell" role="img" aria-label=""></canvas></div>
+<div class="step-head">
+<p class="step-chapter" id="step-chapter"></p>
+<h2 class="step-now" id="step-now" tabindex="-1"></h2>
+<p class="step-cell-note" id="step-cell-note"></p>
+</div>
+<div class="step-body">
+<p class="step-ask" id="step-ask"></p>
+<ul class="step-moves" id="step-moves"></ul>
+<p class="step-hint" id="step-hint" hidden>Words in brackets say when a step can happen.</p>
+</div>
+<div class="step-controls">
+<button type="button" id="step-back">Back</button>
+<button type="button" id="step-play" aria-pressed="false">Play</button>
+<button type="button" id="step-again">Start again</button>
+<button type="button" id="step-close">Close</button>
+</div>
+<details class="step-trail-box"><summary>The path so far</summary><ol class="step-trail" id="step-trail"></ol></details>
+<p class="sr-only" aria-live="polite" id="step-live"></p>
+</aside>
+<script type="module" src="js/step.mjs"></script>
 </body>
 </html>

@@ -33,6 +33,15 @@ Draw the sixteen sheets into `out/sheets/` (`--ppm=5` draws a quick small versio
 node art/render.js
 ```
 
+The page has a step-through mode: the tag "Step through the chart" on the title opens it. A gold cell travels the
+threads one step at a time while a spotlight marks its state and a microscope view shows the cell. The steps come from
+`model/cellcycle.mjs`, the model ported to JavaScript; `node model/check.mjs` confirms it reaches the same 61 states, 77
+steps, 28 arrows and bug paths as TLC. Draw the microscope views (21 states, 3 frames each) into `out/cells/`:
+
+```bash
+node art/cells.js
+```
+
 Draw the favicon, the icons and the OpenGraph card into `out/brand/`:
 
 ```bash
@@ -66,6 +75,8 @@ node art/serve.mjs
 | `art/scenes.js` | the sixteen sheets: paper, scene, captions and alt text |
 | `art/render.js`, `art/page.js` | draw the sheets, then build the page |
 | `art/brand.js` | the favicon, the icons and the OpenGraph card: one gold cell pinching in two |
+| `model/cellcycle.mjs`, `model/check.mjs` | the model in JavaScript, for the step-through mode, and the check that it matches TLC |
+| `art/cells.js`, `art/step.mjs` | the microscope view of each state, and the step-through mode on the page |
 | `art/video.js` | the video: scrolls down the wall, slowing and speeding so each chapter meets its part of the music |
 | `music/score.txt` | the soundtrack's score |
 | `../docs/one-becomes-two/` | the page: tiles in two sizes, the fonts, the icons, the video and the chart as text |
