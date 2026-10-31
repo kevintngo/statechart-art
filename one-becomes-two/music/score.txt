@@ -1,0 +1,66 @@
+title: The Second Hand
+tempo: 96          meter: 2/4          key: D major          space: hall          master: warm
+
+tracks:
+  lead   = piano
+  voice  = piano role=keys
+  vibes  = bowed vibraphone vol=1.2
+  cellos = cellos role=bass
+  spic   = spiccato
+  timp   = timpani vol=0.6
+  harp   = harp vol=0.55
+
+[one] bars=4 dyn=ppp<pp
+lead: | r:1 D5:1 | B5:2 | A5:1 F#5:1~ | F#5:2 |
+
+[interphase] bars=6 dyn=p<mp
+chords: D | D | Gmaj7/B | Gmaj7/B | A9 | A7
+lead: | D5:1 B5:1~ | B5:.5 A5:.5 F#5:1 | B4:1 G5:1~ | G5:.5 F#5:.5 D5:1 | E5:1 F#5:.5 G5:.5 | A5:1 G5:.5 E5:.5 |
+voice: arp 8 ballad pedal
+
+[copying] bars=3 dyn=mp
+chords: D | Bm7 | Em9:1 A7sus4:1
+lead: | D5:1 B5:1~ | B5:.5 A5:.5 F#5:1 | E5:1 D5:1 |
+voice: arp 8 ballad pedal
+cellos: | p r:1 D4:1 | B4:1.5 A4:.5 | F#4:1 E4:1 |
+vibes: | pp [A4 E5]:2~ | [A4 E5]:2~ | [A4 E5]:2 |
+
+[checks] bars=5 dyn=p>pp rit
+chords: Gmaj7 | Gmaj7 | Gm6 | Gm6 | Bbmaj7:1 A7sus4:1
+lead: | D5:1 B5:1~ | B5:.5 A5:.5 F#5:1 | pp D5:1 Bb5:1 | C6:1 Bb5:1 | A5:2 |
+voice: | D4:1 B4:1~ | B4:.5 A4:.5 F#4:1 | r:2 | r:2 | r:2 |
+vibes: | pp [D5 F#5]:2~ | [D5 F#5]:2 | r:2 | D4:1 Bb4:1 | A4:2 |
+cellos: | pp [G2 D4]:2 | G2:2 | G2:2~ | G2:2 | Bb2:1 A2:1 |
+
+[mitosis] bars=6 dyn=mp<f tempo=104
+chords: Dm | Dm | Em7b5 | F | Gm | E7/G#
+lead: | D5:1 Bb5:1~ | Bb5:.5 A5:.5 F5:1 | [E4 E5]:2 | [F4 F5]:1 [G4 G5]:1 | [G4 G5]:.5 [F4 F5] [G4 G5] [A4 A5] | [B4 B5]:.5 [A4 A5] [B4 B5] [G#4 G#5] |
+voice: | ppp cresc D4:.25 Bb4 A4 F4 D4 Bb4 A4 F4 | D4 Bb4 A4 F4 D4 Bb4 A4 F4 | E3 D4 Bb3 G3 E3 D4 Bb3 G3 | F3 D4 C4 A3 F3 D4 C4 A3 | G3 Eb4 D4 Bb3 G3 Eb4 D4 Bb3 | p G#3 E4 D4 B3 G#3 E4 D4 B3 |
+spic: | p cresc D5:.5 A4 D5 A4 | D5 A4 D5 A4 | D5 Bb4 D5 Bb4 | C5 A4 C5 A4 | D5:.25 Bb4 D5 Bb4 D5 Bb4 D5 Bb4 | mf G#4 B4 G#4 B4 G#4 B4 G#4 B4 |
+cellos: | p cresc D2:2~ | D2:2 | E2:2 | F2:2 | G2:2 | f G#2:2 |
+vibes: | r:2 | r:2 | r:2 | r:2 | pp cresc [G4 G5]:2 | [G#4 G#5]:2 |
+timp: | r:2 | r:2 | r:2 | r:2 | pp cresc D2:1/6 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 D2 | E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 E2 mp E2 |
+
+[metaphase] bars=2 dyn=ff>f tempo=104
+chords: D/A | D/A
+lead: | [A4 D5 F#5 A5]:2 | [A4 D5 F#5 A5]:2 |
+voice: | ff [A2 A3]:2~ | [A2 A3]:2 |
+vibes: | f [A4 A5]:2~ | [A4 A5]:2 |
+cellos: | ff A2:2~ | A2:2 |
+spic: | f [A4 A5]:.25 [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] | [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] [A4 A5] |
+timp: | mf A2:1/6! A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 A2 | dim A2 A2 A2 A2 A2 A2 A2 A2 A2 p A2 r:1/3 |
+
+[anaphase] bars=2 dyn=mf>p tempo=84
+chords: A7 | A7
+lead: | A5:.25 B5 C#6 D6 E6 F#6 G6 A6~ | A6:2 |
+voice: | A3:.25 G3 F#3 E3 D3 C#3 B2 A2~ | A2:2 |
+vibes: | mf dim [E5 A5 C#6]:2 | r:2 |
+cellos: | mf dim A2:2~ | p A2:2 |
+harp: | r:2 | pp cresc D3:1/6 E3 F#3 A3 B3 D4 E4 F#4 A4 B4 D5 p E5 |
+
+[two] bars=4 dyn=p>pp tempo=97
+chords: D:1 Gmaj7:1 | A7:1 D/F#:1 | Em7:1 A7:1 | D
+lead: | D5:1 B5:1~ | B5:.5 A5:.5 F#5:1 | G5:.5 F#5:.5 E5:1 | D5:1 pp B5:1 |
+cellos: | p F#4:1 D5:1~ | D5:.5 C#5:.5 A4:1 | B4:.5 A4:.5 G4:1 | F#4:2 |
+harp: | pp D2:.5 A2:.5 G2:.5 D3:.5 | A2:.5 E3:.5 F#2:.5 D3:.5 | E2:.5 B2:.5 A2:.5 C#3:.5 | [D3 A3 D4 F#4 A4 D5]:2/ |
+vibes: | r:2 | r:2 | r:2 | ppp [A5 D6]:2 |
