@@ -100,9 +100,19 @@ function aim(r, round, dur) {
 const startRect = () => ({ x: data.start[0] - 9, y: data.start[1] - 8.5, w: 18, h: 17 });
 
 function visible() { return window.innerHeight - (wide.matches ? 0 : panel.offsetHeight); }
+let glider = null;
+function stopGlide() { if (glider) { cancelAnimationFrame(glider.id); clearTimeout(glider.guard); glider = null; } }
+function glide(to) {
+  stopGlide();
+  const from = window.scrollY, t0 = performance.now(), dur = 450, g = { id: 0, guard: 0 };
+  const end = () => { stopGlide(); window.scrollTo({ top: to, behavior: 'instant' }); };
+  const frame = (now) => { const u = Math.min(1, (now - t0) / dur); window.scrollTo({ top: from + (to - from) * (0.5 - Math.cos(Math.PI * u) / 2), behavior: 'instant' }); if (u < 1) g.id = requestAnimationFrame(frame); else end(); };
+  glider = g; g.guard = setTimeout(end, dur + 300); g.id = requestAnimationFrame(frame);
+}
 function follow(yMm, smooth) {
-  const r = wall.getBoundingClientRect(), y = r.top + window.scrollY + (yMm / data.total) * r.height;
-  window.scrollTo({ top: Math.max(0, y - visible() * 0.42), behavior: smooth && !still.matches ? 'smooth' : 'instant' });
+  const r = wall.getBoundingClientRect(), y = r.top + window.scrollY + (yMm / data.total) * r.height, to = Math.max(0, y - visible() * 0.42);
+  if (smooth && !still.matches) glide(to);
+  else { stopGlide(); window.scrollTo({ top: to, behavior: 'instant' }); }
 }
 const centre = (r) => [r.x + r.w / 2, r.y + r.h / 2];
 const arrival = (edge, r) => (edge ? edge.pts[edge.pts.length - 1] : [r.x + r.w / 2, r.y - 1.5]);
@@ -231,7 +241,7 @@ function closeStepper() {
   opener.setAttribute('aria-expanded', 'false');
   opener.focus({ preventScroll: true });
   const b = opener.getBoundingClientRect();
-  if (b.top < 0 || b.bottom > window.innerHeight) window.scrollTo({ top: Math.max(0, b.top + window.scrollY - 120), behavior: still.matches ? 'instant' : 'smooth' });
+  if (b.top < 0 || b.bottom > window.innerHeight) { const to = Math.max(0, b.top + window.scrollY - 120); if (still.matches) window.scrollTo({ top: to, behavior: 'instant' }); else glide(to); }
 }
 
 opener.addEventListener('click', () => (open ? closeStepper() : openStepper()));
