@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One becomes two</title>
+<meta name="description" content="The life of one cell, from one cell to two, drawn as a statechart and checked by TLC.">
+<link rel="canonical" href="https://kevintngo.github.io/statechart-art/one-becomes-two/">
+<meta name="theme-color" content="#191614">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="statechart art">
+<meta property="og:title" content="One becomes two">
+<meta property="og:description" content="The life of one cell, from one cell to two, drawn as a statechart and checked by TLC.">
+<meta property="og:url" content="https://kevintngo.github.io/statechart-art/one-becomes-two/">
+<meta property="og:image" content="https://kevintngo.github.io/statechart-art/one-becomes-two/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The title One becomes two, the life of one cell, drawn as a statechart, above a pink tissue of cells in coloured pencil. A gold thread leads into one gold cell pinching in two, with a nucleus in each half.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="One becomes two">
+<meta name="twitter:description" content="The life of one cell, from one cell to two, drawn as a statechart and checked by TLC.">
+<meta name="twitter:image" content="https://kevintngo.github.io/statechart-art/one-becomes-two/og.jpg">
+<meta name="twitter:image:alt" content="The title One becomes two, the life of one cell, drawn as a statechart, above a pink tissue of cells in coloured pencil. A gold thread leads into one gold cell pinching in two, with a nucleus in each half.">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/KevinSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Kevin Sans"; src: url(fonts/KevinSans-Regular.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Kevin Sans"; src: url(fonts/KevinSans-Bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+html { background: #191614; color: #efe6d6; font: 400 1.0625rem/1.65 "Kevin Sans", "Avenir Next", system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+.wall { max-width: 960px; margin: 0 auto; background: #f5f1e7; box-shadow: 0 0 0 1px #2c2622, 0 30px 90px rgba(0, 0, 0, 0.5); }
+.wall img { display: block; width: 100%; height: auto; }
+.tile { position: relative; container-type: inline-size; }
+.credits { list-style: none; margin: 0; padding: 0; }
+.credits li { position: absolute; margin: 0; white-space: nowrap; line-height: 1.16; color: transparent; }
+.credits a { color: transparent; text-decoration: none; border-radius: 2px; }
+.credits a:hover { background: rgba(196, 69, 58, 0.12); }
+.credits a:focus-visible { outline: 2px solid #933323; outline-offset: 2px; background: rgba(196, 69, 58, 0.08); }
+.credits ::selection { color: transparent; background: rgba(226, 179, 63, 0.4); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.text { max-width: 44rem; margin: 56px auto 80px; padding: 0 20px 0 36px; }
+.text h2 { display: inline; font-weight: 700; font-size: 1.35rem; margin: 0; }
+.text summary { cursor: pointer; padding: 10px 0; list-style-position: outside; }
+.text summary:focus-visible { outline: 2px solid #f0c86a; outline-offset: 4px; }
+.text h3 { font-weight: 700; font-size: 1.15rem; margin: 28px 0 6px; }
+.text p { margin: 8px 0; color: #d8cfc0; }
+.text dl { margin: 0; }
+.text dt { margin-top: 10px; font-weight: 700; }
+.text dd { margin: 2px 0 0 1.2em; color: #d8cfc0; }
+.text .breaks { color: #f0a493; font-weight: 400; }
+.text ul { padding-left: 1.2em; }
+.text li { margin: 6px 0; color: #d8cfc0; }
+a { color: #f0c86a; text-underline-offset: 0.18em; }
+a:focus-visible { outline: 2px solid #f0c86a; outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main>
+<h1 class="sr-only">One becomes two</h1>
+<div class="wall">
+<div class="tile">
+<img src="tiles/00-title-1080.webp" srcset="tiles/00-title-1080.webp 1080w, tiles/00-title-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="3072" alt="One becomes two. The life of one cell, drawn as a statechart. Each glass slide is a state a cell can be in. Each thread is a step it can take. TLC, a model checker, tried every one: 61 states and 77 steps. A gold thread is a healthy cell, a red thread is what TLC found when a check breaks, and a pale thread is every other step. Below, a tissue of pink cells like a stained slide; one cell, outlined in gold, is where the thread begins." fetchpriority="high" decoding="async">
+<ul class="credits" aria-label="Credits">
+<li style="left:5.833%;top:21.703%;font-size:2.2222cqw">Charted with the /statechart skill by <a href="https://x.com/poteto">@poteto</a>.</li>
+<li style="left:5.833%;top:24.125%;font-size:2.2222cqw">Modelled in TLA+, checked by <a href="https://github.com/tlaplus/tlaplus">TLC</a> and laid out by <a href="https://pele.run">pele</a>.</li>
+<li style="left:5.833%;top:26.547%;font-size:2.2222cqw">Drawn in JavaScript with simulated pencil, pastel and gel pen.</li>
+<li style="left:5.833%;top:28.969%;font-size:2.2222cqw">Lettering in Kevin Sans, traced from A. V. Hershey’s 1967 fonts.</li>
+<li style="left:5.833%;top:31.391%;font-size:2.2222cqw">The code and drawings are on <a href="https://github.com/kevintngo/statechart-art">GitHub</a>, under the <a href="https://github.com/kevintngo/statechart-art/blob/main/LICENSE">MIT license</a>.</li>
+</ul>
+</div>
+<img src="tiles/01-growing-1080.webp" srcset="tiles/01-growing-1080.webp 1080w, tiles/01-growing-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1518" alt="Getting ready (interphase). A large cell with its nucleus, mitochondria and folds of membrane; sugar molecules drift toward it." fetchpriority="high" decoding="async">
+<img src="tiles/02-first-check-1080.webp" srcset="tiles/02-first-check-1080.webp 1080w, tiles/02-first-check-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On brown paper, a long DNA double helix. On the left, rays of sunlight break it; on the right, the protein p53 clamps onto it and holds the cell still." loading="lazy" decoding="async">
+<img src="tiles/03-copying-1080.webp" srcset="tiles/03-copying-1080.webp 1080w, tiles/03-copying-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="896" alt="On dark teal, the DNA unzips at a fork and each half becomes a new double helix, gold and pale blue." loading="lazy" decoding="async">
+<img src="tiles/04-second-check-1080.webp" srcset="tiles/04-second-check-1080.webp 1080w, tiles/04-second-check-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="896" alt="On graph paper, two columns of coloured beads match one for one with a red tick, and a cell sketch now holds two of every chromosome." loading="lazy" decoding="async">
+<img src="tiles/05-held-1080.webp" srcset="tiles/05-held-1080.webp 1080w, tiles/05-held-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On plum paper, a broken DNA helix with two ring-shaped repair proteins stitching the ends together." loading="lazy" decoding="async">
+<img src="tiles/06-apoptosis-1080.webp" srcset="tiles/06-apoptosis-1080.webp 1080w, tiles/06-apoptosis-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1256" alt="A cell breaks into neat round pieces, and a larger cleaner cell swallows them." loading="lazy" decoding="async">
+<img src="tiles/07-prophase-1080.webp" srcset="tiles/07-prophase-1080.webp 1080w, tiles/07-prophase-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1574" alt="Dividing (mitosis). On black, a tangle of coloured DNA threads on the left; on the right, the threads have coiled into X-shaped, banded chromosomes." loading="lazy" decoding="async">
+<img src="tiles/08-prometaphase-1080.webp" srcset="tiles/08-prometaphase-1080.webp 1080w, tiles/08-prometaphase-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On navy, two golden spindle poles shine fibres in from the left and right while pieces of the broken nucleus drift between them." loading="lazy" decoding="async">
+<img src="tiles/09-caught-1080.webp" srcset="tiles/09-caught-1080.webp 1080w, tiles/09-caught-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="Gold fibres catch chromosomes. On the left, one is held from both sides; on the right, one is held from one side only, its loose side glowing red." loading="lazy" decoding="async">
+<img src="tiles/10-metaphase-1080.webp" srcset="tiles/10-metaphase-1080.webp 1080w, tiles/10-metaphase-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On pink paper, six purple chromosomes line up in a column in the middle, with fibres running to a pole on each side." loading="lazy" decoding="async">
+<img src="tiles/11-anaphase-1080.webp" srcset="tiles/11-anaphase-1080.webp 1080w, tiles/11-anaphase-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On terracotta, V-shaped chromatids are pulled to the far left and far right poles." loading="lazy" decoding="async">
+<img src="tiles/12-telophase-1080.webp" srcset="tiles/12-telophase-1080.webp 1080w, tiles/12-telophase-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="On peach paper, a long cell with a pinched waist, a new nucleus forming at each end." loading="lazy" decoding="async">
+<img src="tiles/13-cytokinesis-1080.webp" srcset="tiles/13-cytokinesis-1080.webp 1080w, tiles/13-cytokinesis-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="963" alt="Two daughter cells, each with its own nucleus and mitochondria, still joined by a thin bridge tied with a red ring." loading="lazy" decoding="async">
+<img src="tiles/14-endings-1080.webp" srcset="tiles/14-endings-1080.webp 1080w, tiles/14-endings-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1686" alt="Three pairs of daughter cells. Left: one has an extra chromosome and one is short. Middle: each has one of everything. Right: both carry a red mark, the copied damage. Each daughter begins again at the top." loading="lazy" decoding="async">
+<img src="tiles/15-colophon-1080.webp" srcset="tiles/15-colophon-1080.webp 1080w, tiles/15-colophon-2160.webp 2160w" sizes="(min-width: 960px) 960px, 100vw" width="2160" height="1250" alt="What TLC checked, beside a ring showing one cycle: G1, S, G2 and M." loading="lazy" decoding="async">
+</div>
+<section class="text">
+<details>
+<summary><h2>Read the chart as text</h2></summary>
+<p>A statechart of the cell cycle, modelled in TLA+ and checked by TLC, which reached 61 states and 77 steps. Each state below lists the steps that leave it.</p>
+<h3>Getting ready (interphase)</h3>
+<dl>
+<dt>Growing (G1)</dt>
+<dd>the DNA is damaged [p53 broken] → Damaged, and p53 is broken</dd>
+<dd>no signal to grow → Resting (G0)</dd>
+<dd>passes the first check → Copying its DNA (S)</dd>
+<dd>the DNA is damaged → Damaged, held by p53</dd>
+<dt>Damaged, and p53 is broken</dt>
+<dd>the damage is repaired → Growing (G1)</dd>
+<dd>copies it anyway → Copying damaged DNA</dd>
+<dt>Resting (G0)</dt>
+<dd>a growth signal arrives → Growing (G1)</dd>
+<dt>Copying its DNA (S)</dt>
+<dd>the copy is done → Checking the copy (G2)</dd>
+<dt>Damaged, held by p53</dt>
+<dd>the damage is repaired → Growing (G1)</dd>
+<dd>too much damage → Dies on purpose (apoptosis)</dd>
+<dt>Copying damaged DNA <span class="breaks">(breaks a rule)</span></dt>
+<dd>the damage is copied as a mutation → Checking the copy (G2)</dd>
+<dt>Checking the copy (G2)</dt>
+<dd>the DNA is damaged → Damaged, held at the second check</dd>
+<dd>passes the second check → Coiling up (prophase)</dd>
+<dt>Damaged, held at the second check</dt>
+<dd>the damage is repaired → Checking the copy (G2)</dd>
+<dd>too much damage [p53 working] → Dies on purpose (apoptosis)</dd>
+</dl>
+<h3>Endings</h3>
+<dl>
+<dt>Dies on purpose (apoptosis)</dt>
+<dd>the end</dd>
+<dt>Two cells with the wrong chromosomes <span class="breaks">(breaks a rule)</span></dt>
+<dd>the end</dd>
+<dt>Two healthy cells</dt>
+<dd>the end</dd>
+<dt>Two cells carrying a mutation <span class="breaks">(breaks a rule)</span></dt>
+<dd>the end</dd>
+</dl>
+<h3>Dividing (mitosis)</h3>
+<dl>
+<dt>Coiling up (prophase)</dt>
+<dd>the nucleus opens → The spindle reaches in (prometaphase)</dd>
+<dt>The spindle reaches in (prometaphase)</dt>
+<dd>fibres catch some chromosomes → Some caught, the check waits</dd>
+<dd>fibres catch some [check broken] → Some caught, the check is broken</dd>
+<dt>Some caught, the check waits</dt>
+<dd>every chromosome is caught → Lined up in the middle (metaphase)</dd>
+<dt>Some caught, the check is broken</dt>
+<dd>every chromosome is caught → Lined up in the middle (metaphase)</dd>
+<dd>pulled apart anyway → Pulled apart too soon</dd>
+<dt>Lined up in the middle (metaphase)</dt>
+<dd>the sisters are pulled apart → Sisters pulled apart (anaphase)</dd>
+<dt>Pulled apart too soon <span class="breaks">(breaks a rule)</span></dt>
+<dd>two nuclei form → Two nuclei form (telophase)</dd>
+<dt>Sisters pulled apart (anaphase)</dt>
+<dd>two nuclei form → Two nuclei form (telophase)</dd>
+<dt>Two nuclei form (telophase)</dt>
+<dd>the cell pinches → Pinching in two (cytokinesis)</dd>
+<dt>Pinching in two (cytokinesis)</dt>
+<dd>splits, chromosomes uneven → Two cells with the wrong chromosomes</dd>
+<dd>splits in two → Two healthy cells</dd>
+<dd>splits, passing the mutation on → Two cells carrying a mutation</dd>
+</dl>
+
+<h3>What TLC found</h3>
+<ul>
+<li>Holds: a cell never divides before it copies its DNA, and a cell never gets stuck.</li>
+<li>Breaks without p53: damaged DNA gets copied, and both daughters carry the mutation (a path of 11 steps).</li>
+<li>Breaks without the spindle check: the sisters are pulled apart too soon, and the daughters get the wrong chromosomes (a path of 9 steps).</li>
+</ul>
+</details>
+</section>
+</main>
+</body>
+</html>

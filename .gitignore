@@ -2,3 +2,9 @@ node_modules/
 business/out/
 business/*/chart/*.out
 .DS_Store
+one-becomes-two/out/
+one-becomes-two/model/chart/*.out
+one-becomes-two/model/run.log
+one-becomes-two/music/drafts/
+one-becomes-two/music/trials/
+one-becomes-two/music/render/
