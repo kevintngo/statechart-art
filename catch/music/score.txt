@@ -1,0 +1,86 @@
+title: Seven Minutes Home
+tempo: 96          meter: 4/4          key: Eb major          space: hall          master: warm
+
+tracks:
+  lead    = french horn
+  keys    = piano role=keys
+  strings = strings
+  low     = cellos role=bass
+  harp    = harp vol=0.6
+  timp    = timpani vol=0.7
+  bells   = glockenspiel vol=0.7
+
+[dawn] bars=2 dyn=mp<mf
+chords: Ebadd9 | Abmaj7/C
+strings: pad high
+low: | pp Eb2:4 | C3:4 |
+harp: arp 8 flow
+bells: | r:2 Bb5:1 G5:1 | r:1 Eb6:1 r:2 |
+
+[liftoff] bars=2 dyn=mp<mf
+chords: Eb | Bb/D
+lead: | mp Eb4:2 Bb4:2~ | Bb4:1 Ab4:.5 G4:.5 F4:2 |
+strings: pad
+low: | p cresc Eb2:4 | mf D2:4 |
+harp: arp 16 harp
+timp: | pp cresc Eb2:1/6 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 Eb2 | mf Bb2:1! r:1 Bb2:1 r:1 |
+
+[staging] bars=1 dyn=mf
+chords: Abadd9
+lead: | Ab4:1 C5:1 Eb5:2 |
+strings: pad open
+low: | Ab2:4 |
+harp: arp 16 harp
+timp: | Ab2:1! r:3 |
+bells: | Eb6:.5 G6:.5 Bb6:1 r:2 |
+
+[return] bars=2 dyn=mp
+chords: Cm7 | Abmaj7:2 Bb:2
+lead: | D5:1.5 C5:.5 Bb4:2 | C5:1 Bb4:.5 Ab4:.5 G4:1 F4:1 |
+strings: comp eighths short
+low: | C3:2 G2:2 | Ab2:2 Bb2:2 |
+timp: | mp C3:1 r:1 G2:1 r:1 | Ab2:1 r:1 Bb2:1 r:1 |
+
+[approach] bars=2 dyn=mp<f
+chords: Abmaj7 | Bb7sus4:2 Bb7:2
+lead: | Eb4:1 F4:1 G4:1 Ab4:1 | Bb4:2 C5:1 D5:1 |
+strings: pad full
+low: | Ab2:4 | Bb2:4 |
+harp: arp 16 harp
+timp: | r:2 pp cresc Bb2:1/6 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 | Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 |
+
+[caught] bars=1 dyn=ff>mf
+chords: Eb
+lead: | Eb5:4 |
+strings: pad full
+low: | Eb2:4 |
+harp: gliss down beats=2
+timp: | ff Eb2:1! r:3 |
+bells: | G6:1 Bb6:1 Eb7:2 |
+
+[night] bars=4 dyn=p
+chords: Cm | Abmaj7 | Fm7 | Bb7sus4:2 Bb7:2
+keys: | mp C5:2 G5:2~ | G5:1 F5:.5 Eb5:.5 C5:2 | Ab4:1 C5:1 F5:2 | Eb5:1 D5:1 Bb4:2 |
+strings: pad
+low: | C3:4 | Ab2:4 | F2:4 | Bb2:4 |
+harp: arp 8 ballad
+timp: | r:4 | r:4 | r:4 | r:2 pp cresc Bb2:1/6 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 Bb2 |
+bells: | r:3 G6:1 | r:4 | r:2 C7:1 r:1 | r:4 |
+
+[finale] bars=2 dyn=mp<f
+chords: Eb/G | Ab:2 Bb:2
+lead: | Eb4:2 Bb4:2~ | Bb4:1 C5:1 D5:2 |
+keys: arp 8 flow
+strings: pad full
+low: | G2:4 | Ab2:2 Bb2:2 |
+harp: arp 16 harp
+bells: | r:2 Bb5:1 G5:1 | r:2 C6:1 D6:1 |
+
+[coda] bars=1 dyn=mf>pp rit
+chords: Eb
+lead: | Eb5:4 |
+keys: | [Eb3 Bb3 G4 Eb5]:4/ |
+strings: pad full
+low: | Eb2:4 |
+harp: | [Eb3 G3 Bb3 Eb4 G4 Bb4]:4/ |
+bells: | r:1 G6:1 Bb6:1 Eb7:1 |

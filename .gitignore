@@ -8,3 +8,7 @@ one-becomes-two/model/run.log
 one-becomes-two/music/drafts/
 one-becomes-two/music/trials/
 one-becomes-two/music/render/
+catch/out/
+catch/model/chart/*.out
+catch/model/run.log
+catch/music/render/

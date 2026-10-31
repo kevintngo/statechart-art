@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catch</title>
+<meta name="description" content="Starship’s booster flies home and is caught by its tower: a statechart in paper, thread and light, checked by TLC.">
+<link rel="canonical" href="https://kevintngo.github.io/statechart-art/catch/">
+<meta name="theme-color" content="#14152c">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="statechart art">
+<meta property="og:title" content="Catch">
+<meta property="og:description" content="Starship’s booster flies home and is caught by its tower: a statechart in paper, thread and light, checked by TLC.">
+<meta property="og:url" content="https://kevintngo.github.io/statechart-art/catch/">
+<meta property="og:image" content="https://kevintngo.github.io/statechart-art/catch/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The title Catch on a paper card. Beside it, just after sunrise, Starship’s booster hangs caught in the two arms of its launch tower above the empty launch mount, with felt patches of the statechart hanging on threads, sand dunes, the sea and paper clouds behind.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Catch">
+<meta name="twitter:description" content="Starship’s booster flies home and is caught by its tower: a statechart in paper, thread and light, checked by TLC.">
+<meta name="twitter:image" content="https://kevintngo.github.io/statechart-art/catch/og.jpg">
+<meta name="twitter:image:alt" content="The title Catch on a paper card. Beside it, just after sunrise, Starship’s booster hangs caught in the two arms of its launch tower above the empty launch mount, with felt patches of the statechart hanging on threads, sand dunes, the sea and paper clouds behind.">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="fonts/KevinSans-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+<script>if (!(window.HTMLScriptElement && HTMLScriptElement.supports && HTMLScriptElement.supports('importmap'))) document.documentElement.classList.add('no-webgl');</script>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.js", "three/addons/": "./vendor/addons/" } }</script>
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<div class="curtain" id="curtain" aria-hidden="true"><span class="cue">Scroll<svg viewBox="0 0 12 16"><path d="M6.1 1.4C5.6 5.2 6.5 9.1 6 13.7M1.8 9.4C3.4 10.9 4.7 12.3 6 13.9 7.3 12.4 8.6 11 10.3 9.3"/></svg></span></div>
+<div class="regions" aria-hidden="true">
+<p><span>The booster</span><b id="r-booster">Filling with propellant</b></p>
+<p><span>The ship</span><b id="r-ship">Riding on top</b></p>
+<p><span>The tower</span><b id="r-tower">Arms open, waiting</b></p>
+</div>
+<main>
+<section class="station title" data-key="filling"><div class="card">
+<h1>Catch</h1>
+<p class="sub">Starship’s booster flies home and is caught by its tower. A statechart in paper, thread and light.</p>
+<p class="credits">Charted with the /statechart skill by <a href="https://x.com/poteto">@poteto</a>. Checked by <a href="https://github.com/tlaplus/tlaplus">TLC</a>, laid out by <a href="https://pele.run">pele</a>, built with <a href="https://threejs.org">three.js</a>. Lettering in Kevin Sans, traced from A. V. Hershey’s 1967 fonts. The code is on <a href="https://github.com/kevintngo/statechart-art">GitHub</a>, under the <a href="https://github.com/kevintngo/statechart-art/blob/main/LICENSE">MIT license</a>. An unofficial fan piece.</p>
+<p class="now">The booster: Filling with propellant. The ship: Riding on top. The tower: Arms open, waiting.</p>
+<h2>Filling with propellant</h2>
+<p>Before dawn, super cold liquid oxygen and methane pour into the tanks, and frost blooms on the steel. On the tower, the arms wait, open.</p>
+<p class="hint">Scroll to fly. <button type="button" class="hold" aria-pressed="false">Hold the picture still</button></p>
+</div><span class="cue" aria-hidden="true">Scroll<svg viewBox="0 0 12 16"><path d="M6.1 1.4C5.6 5.2 6.5 9.1 6 13.7M1.8 9.4C3.4 10.9 4.7 12.3 6 13.9 7.3 12.4 8.6 11 10.3 9.3"/></svg></span></section>
+<section class="station" data-key="liftoff"><div class="card">
+<p class="step">the count reaches zero</p>
+<h2>Lifting off</h2>
+<p class="now">The booster: Lifting off. The ship: Riding on top. The tower: Arms open, waiting.</p>
+<p>Thirty-three engines light. The clamps let go, and the stack climbs past the tower on a column of fire.</p>
+</div></section>
+<section class="station" data-key="maxq"><div class="card">
+<p class="step">the air presses hardest</p>
+<h2>Through max Q</h2>
+<p class="now">The booster: Through max Q. The ship: Riding on top. The tower: Arms open, waiting.</p>
+<p>About a minute up, the air pushes back hardest. The engines throttle down, and the stack keeps climbing.</p>
+</div></section>
+<section class="station" data-key="staging"><div class="card">
+<p class="step">most of the booster’s engines cut off</p>
+<h2>Hot staging</h2>
+<p class="now">The booster: Hot staging. The ship: Engines lit while attached. The tower: Arms open, waiting.</p>
+<p>All but three of the booster’s engines cut off. The ship lights its own six while still attached, and their fire blasts out through the vented ring between the two.</p>
+</div></section>
+<section class="station" data-key="boostback"><div class="card">
+<p class="step">the ship pulls away</p>
+<h2>Flipping, burning back</h2>
+<p class="now">The booster: Flipping, burning back. The ship: Flying on to space. The tower: Arms open, waiting.</p>
+<p>The ship climbs on toward space. The booster flips around and lights ten more engines to head home.</p>
+</div></section>
+<section class="station" data-key="falling"><div class="card">
+<p class="step">every check passes: go for catch</p>
+<h2>Falling home</h2>
+<p class="now">The booster: Falling home. The ship: Flying on to space. The tower: Arms open, waiting.</p>
+<p>Before the burn ends, every check on the booster and the tower passes, so the call is go. The booster drops the vented ring and falls back toward the tower, steering with its grid fins.</p>
+</div></section>
+<section class="station" data-key="landing"><div class="card">
+<p class="step">the landing burn starts</p>
+<h2>Slowing over the tower</h2>
+<p class="now">The booster: Slowing over the tower. The ship: Flying on to space. The tower: Arms open, waiting.</p>
+<p>Near the ground, thirteen engines light, then only the middle three keep firing. The booster slows almost to a stop and slides in between the open arms.</p>
+</div></section>
+<section class="station" data-key="closing"><div class="card">
+<p class="step">the arms close</p>
+<h2>Arms closing</h2>
+<p class="now">The booster: Slowing over the tower. The ship: Flying on to space. The tower: Arms closing.</p>
+<p>The arms swing in around the booster’s body, just below the pins it will rest on.</p>
+</div></section>
+<section class="station" data-key="caught"><div class="card">
+<p class="step">the arms catch it</p>
+<h2>Caught</h2>
+<p class="now">The booster: Caught by the arms. The ship: Flying on to space. The tower: Holding the booster.</p>
+<p>The booster settles onto the arms, and its engines go quiet. Caught, seven minutes after it left, just after sunrise.</p>
+</div></section>
+<section class="station" data-key="reentry"><div class="card">
+<p class="step">falls back into the air</p>
+<h2>Falling back, glowing</h2>
+<p class="now">The booster: Caught by the arms. The ship: Falling back, glowing. The tower: Holding the booster.</p>
+<p>Far away, about forty minutes later, the ship falls back into the air belly first. Its black tiles take the heat, and the air around it glows pink.</p>
+</div></section>
+<section class="station" data-key="flip"><div class="card">
+<p class="step">flips and lights its engines</p>
+<h2>Flipping upright</h2>
+<p class="now">The booster: Caught by the arms. The ship: Flipping upright. The tower: Holding the booster.</p>
+<p>Close to the water, it swings upright and lights its engines to slow down.</p>
+</div></section>
+<section class="station" data-key="splash"><div class="card">
+<p class="step">touches the water</p>
+<h2>Splashed down</h2>
+<p class="now">The booster: Caught by the arms. The ship: Splashed down. The tower: Holding the booster.</p>
+<p>It slows almost to a hover, sets down on the ocean, then tips over onto its side.</p>
+</div></section>
+<section class="station finale" data-key="checked"><div class="card">
+<h2>What TLC checked</h2>
+<p>TLC, a model checker, tried every way this model of the flight can go: 88 states and 132 steps, with the booster, the ship and the tower changing side by side, sometimes in the same step.</p>
+<ul>
+<li>Holds: the arms close only when a booster is coming in to them.</li>
+<li>Holds: the booster turns back only after the ship is free.</li>
+<li>Holds: the flight never gets stuck.</li>
+<li class="breaks">Breaks if the go/no-go poll is skipped and the booster comes in by default: a booster with a failed check heads for the tower anyway (5 steps), and then it hits the tower (7 steps).</li>
+</ul>
+<p>The poll is the guard. With it, a failed check sends the booster to the sea instead. On real flights the sea is the default: the booster comes in only if every check passes and the flight director calls “go” before the boostback burn ends.</p>
+</div></section>
+<section class="plate" id="sampler" aria-labelledby="plate-title"><div class="plate-head">
+<h2 id="plate-title">The whole chart, in thread</h2>
+<p>Every state each part can be in, and every step between them, stitched into one sampler. Gold is the flight that works. Red is where the path TLC found goes wrong when the go/no-go poll is skipped, and a small red knot marks each state on that path. Cream is every other way it can go.</p>
+</div>
+<figure>
+<a href="tex/sampler.webp"><img src="tex/sampler.webp" width="1800" height="2174" loading="lazy" decoding="async" alt="An embroidered statechart on linen, titled Catch. Under the heading At the same time, three columns run side by side: the booster, the ship and the tower. Navy felt patches with gold borders mark the flight that works, joined by gold running stitches, from Filling with propellant down to Caught by the arms, Splashed down and Holding the booster. Cream linen patches mark holding the count, scrubbing and diverting to the sea. A red stitched path leads to three rust patches where a rule breaks: Coming in on a failed check, Hits the tower, and Damaged."></a>
+<figcaption>Drawn in JavaScript, one stitch at a time. See the same chart <a href="chart.svg">as pele draws it</a>, or read its <a href="chart.txt">Mermaid text</a>.</figcaption>
+</figure>
+</section>
+</main>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

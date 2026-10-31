@@ -1,0 +1,20 @@
+{
+  "name": "catch",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node art/serve.mjs",
+    "build": "node art/build.js",
+    "test": "node test/collide.mjs"
+  },
+  "dependencies": {
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.13.0"
+  }
+}
